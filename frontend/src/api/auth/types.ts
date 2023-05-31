@@ -1,22 +1,17 @@
+import { IUserResponse } from "types/user";
+
 export interface IRegisterArgs {
   username: string;
   email: string;
   password: string;
 }
 
-export interface ILoginArgs extends Omit<IRegisterArgs, 'username'> {}
+export interface ILoginArgs extends Omit<IRegisterArgs, "username"> {}
 
-export interface IForgotPasswordArgs extends Pick<ILoginArgs, 'email'> {}
+export interface IForgotPasswordArgs extends Pick<ILoginArgs, "email"> {}
 
-export interface IChangePasswordArgs extends Pick<ILoginArgs, 'password'> {
+export interface IChangePasswordArgs extends Pick<ILoginArgs, "password"> {
   token?: string;
-}
-
-export interface IUserResponse {
-  _id: string;
-  email: string;
-  username: string;
-  isActivated: boolean;
 }
 
 interface ITokensResponse {

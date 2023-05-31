@@ -1,1 +1,0 @@
-export {Error, Success} from './vectors';

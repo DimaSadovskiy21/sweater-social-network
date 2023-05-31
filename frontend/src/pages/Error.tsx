@@ -1,4 +1,4 @@
-import { NotFound } from 'assets'
+import { NotFound } from 'assets/vectors'
 
 const Error = () => <NotFound/>
 

@@ -1,12 +1,12 @@
-import { UseMutationResult, useMutation } from '@tanstack/react-query';
+import { UseMutationResult, useMutation } from "@tanstack/react-query";
 
-import { generateNotification } from 'utils/generateNotification';
+import { TAxiosRequestError } from "types/error";
+import { generateNotification } from "utils/generateNotification";
 
-import { AUTH } from './constants';
-import { IForgotPasswordArgs } from './types';
-import { handleResponseError } from '../utils';
-import { TAxiosRequestError } from '../types';
-import { instance } from '../base';
+import { AUTH } from "./constants";
+import { IForgotPasswordArgs } from "./types";
+import { handleResponseError } from "../utils";
+import { instance } from "../base";
 
 export const useForgotPassword = (): UseMutationResult<
   string,
@@ -14,24 +14,27 @@ export const useForgotPassword = (): UseMutationResult<
   IForgotPasswordArgs
 > => {
   const handleSuccessResponse = (data: string) => {
-    generateNotification({ type: 'success', content: data });
+    generateNotification({ type: "success", content: data });
   };
 
   const handleErrorResponse = (error: TAxiosRequestError) => {
     const message = handleResponseError(error);
 
-    generateNotification({ type: 'error', content: message });
+    generateNotification({ type: "error", content: message });
   };
 
   return useMutation(
     async (payload: IForgotPasswordArgs) => {
-      const { data: message } = await instance.post(AUTH.FORGOT_PASSWORD, payload);
+      const { data: message } = await instance.post(
+        AUTH.FORGOT_PASSWORD,
+        payload
+      );
 
       return message;
     },
     {
       onSuccess: handleSuccessResponse,
       onError: handleErrorResponse,
-    },
+    }
   );
 };

@@ -22,4 +22,6 @@ export const SUBROUTES = {
   DELETE_POST: ':postId',
   UPDATE_POST: ':postId',
   TOGGLE_FAVORITE: 'toggle-favorite/:postId',
+
+  CHANGE_STATUS: 'change-status',
 };

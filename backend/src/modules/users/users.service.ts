@@ -12,7 +12,12 @@ import { SessionTokenService } from 'modules/sessionToken/sessionToken.service';
 import { ActionTokenService } from 'modules/actionToken/actionToken.service';
 
 import { User, UserDocument } from './schemas';
-import { CreateUserDto, AuthUserDto, SetFavoritesUserDto } from './dto';
+import {
+  CreateUserDto,
+  AuthUserDto,
+  SetFavoritesUserDto,
+  ChangeStatusDto,
+} from './dto';
 
 @Injectable()
 export class UsersService {
@@ -68,12 +73,14 @@ export class UsersService {
   }
 
   async getPublicUser(authUserDto: AuthUserDto) {
-    const { _id, username, email, isActivated } = authUserDto;
+    const { _id, username, email, avatar, status, isActivated } = authUserDto;
 
     return {
       _id,
       username,
       email,
+      avatar,
+      status,
       isActivated,
     };
   }
@@ -139,5 +146,25 @@ export class UsersService {
     const tokens = await this.generateAndSaveTokens(userDto);
 
     return { user: userDto, tokens };
+  }
+
+  async changeStatus(changeStatusDto: ChangeStatusDto) {
+    const { userId, status } = changeStatusDto;
+
+    const user = await this.userModel.findByIdAndUpdate(
+      userId,
+      {
+        $set: {
+          status,
+        },
+      },
+      {
+        new: true,
+      },
+    );
+
+    const userDto = await this.getPublicUser(user);
+
+    return userDto;
   }
 }

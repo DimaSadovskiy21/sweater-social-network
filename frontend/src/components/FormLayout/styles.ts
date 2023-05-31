@@ -11,13 +11,13 @@ export const FormWrapper = styled('form')({
   backgroundColor: 'var(--white)',
 });
 
-export const TitleWrapper = styled('div')({
+export const LogoWrapper = styled('div')({
   display: 'flex',
   alignItems: 'center',
   gap: '5px',
 });
 
-export const Title = styled('p')({
+export const LogoTitle = styled('p')({
   fontFamily: 'var(--sigmar)',
   fontSize: 'var(--large-font)',
   fontWeight: 'bold',

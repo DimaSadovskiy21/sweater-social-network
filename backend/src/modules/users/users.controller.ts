@@ -1,9 +1,22 @@
-import { Controller, Get, Param, Res } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Patch,
+  Req,
+  Res,
+  UseGuards,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { Response } from 'express';
+import { Response, Request } from 'express';
+
+import { AccessJwtAuthGuard, RefreshJwtAuthGuard } from 'guards';
 
 import { ROUTES, SUBROUTES } from 'common/constants';
 import { UsersService } from 'modules/users/users.service';
+
+import { ChangeStatusDto } from './dto';
 
 @Controller(ROUTES.USERS)
 export class UsersController {
@@ -22,5 +35,19 @@ export class UsersController {
     await this.usersService.setCookie(res, userData);
 
     return res.redirect(this.configService.get('client_url'));
+  }
+
+  @Patch(SUBROUTES.CHANGE_STATUS)
+  @UseGuards(AccessJwtAuthGuard, RefreshJwtAuthGuard)
+  async changeStatus(
+    @Req() req: Request,
+    @Body() changeStatusDto: ChangeStatusDto,
+  ) {
+    const userId = req.user['_id'];
+    const { status } = changeStatusDto;
+
+    const userData = await this.usersService.changeStatus({ userId, status });
+
+    return userData;
   }
 }

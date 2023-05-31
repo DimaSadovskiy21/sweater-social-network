@@ -7,6 +7,12 @@ export class AuthUserDto {
   @IsString()
   readonly username: string;
 
+  @IsString()
+  readonly avatar: string;
+
+  @IsString()
+  readonly status: string;
+
   @IsEmail()
   readonly email: string;
 

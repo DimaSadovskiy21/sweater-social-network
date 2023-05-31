@@ -1,19 +1,16 @@
 import { FC } from "react";
 
-import { Logo } from "assets";
+import { Logo } from "assets/vectors";
 
 import { IFormLayoutProps } from "./types";
-import { FormWrapper, Title, TitleWrapper } from "./styles";
+import { FormWrapper, LogoTitle, LogoWrapper } from "./styles";
 
-const FormLayout: FC<IFormLayoutProps> = ({
-  children,
-  ...restProps
-}) => (
+const FormLayout: FC<IFormLayoutProps> = ({ children, ...restProps }) => (
   <FormWrapper {...restProps}>
-    <TitleWrapper>
+    <LogoWrapper>
       <Logo />
-      <Title>Sweater</Title>
-    </TitleWrapper>
+      <LogoTitle>Sweater</LogoTitle>
+    </LogoWrapper>
     {children}
   </FormWrapper>
 );

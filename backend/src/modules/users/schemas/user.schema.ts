@@ -22,6 +22,9 @@ export class User {
   @Prop({ default: '' })
   avatar: string;
 
+  @Prop({ default: '' })
+  status: string;
+
   @Prop([{ type: MongooseSchema.Types.ObjectId, ref: SCHEMAS_NAMES.POST }])
   favoritesPosts: ObjectId[];
 }
