@@ -4,10 +4,15 @@ import { useQueryClient } from "@tanstack/react-query";
 import { IUserResponse } from "types/user";
 import { QUERY_KEYS } from "api/constants";
 import { useChangeStatus } from "api/user";
+import { generateNotification } from "utils/generateNotification";
 
 import Status from "./Status";
+import { MESSAGES } from "../constants";
+
 
 const StatusContainer = () => {
+  const { isLoading, mutate: changeStatus } = useChangeStatus();
+
   const queryClient = useQueryClient();
   const userProfile = queryClient.getQueryData<IUserResponse>([
     QUERY_KEYS.USER_PROFILE,
@@ -15,13 +20,11 @@ const StatusContainer = () => {
 
   const status = userProfile?.status;
 
-  const { isLoading, mutate: changeStatus } = useChangeStatus();
-
   const [statusLocal, setStatusLocal] = useState(status);
   const [editStatus, setEditStatus] = useState(false);
 
   const handleChangeStatusLocal = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setStatusLocal(event.target.value.trim());
+    setStatusLocal(event.target.value);
   };
 
   const handleClickEditStatus = () => {
@@ -29,9 +32,11 @@ const StatusContainer = () => {
   };
 
   const handleClickSaveStatus = () => {
-    statusLocal !== undefined && changeStatus({ status: statusLocal });
+    statusLocal !== undefined && changeStatus({ status: statusLocal.trim() });
     setEditStatus(false);
   };
+
+  isLoading && generateNotification({ type: "info", content: MESSAGES.CHANGE });
 
   return (
     <Status

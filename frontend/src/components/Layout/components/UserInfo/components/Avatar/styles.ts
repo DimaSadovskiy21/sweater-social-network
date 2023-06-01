@@ -27,7 +27,7 @@ export const NoAvatarWrapper = styled("div")({
 });
 
 export const Overline = styled("div")<IOverlineStyledProps>(
-  ({ $isShowChangeAvatar, $isLoading }) => ({
+  ({  $isLoading }) => ({
     position: "absolute",
     top: 0,
     right: 0,
@@ -36,7 +36,7 @@ export const Overline = styled("div")<IOverlineStyledProps>(
     justifyContent: "center",
     width: "100%",
     height: "100%",
-    opacity: $isShowChangeAvatar ? 1 : 0,
+    opacity:  0,
     borderRadius: "50%",
     backgroundColor: "var(--overline)",
     fontSize: "var(--medium-font)",
@@ -44,6 +44,9 @@ export const Overline = styled("div")<IOverlineStyledProps>(
     transition: "all 0.3s",
     pointerEvents: $isLoading ? "none" : "all",
     cursor: $isLoading ? "none" : "pointer",
+    ":hover": {
+      opacity: 1
+    }
   })
 );
 

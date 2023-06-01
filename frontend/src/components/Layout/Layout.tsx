@@ -5,14 +5,12 @@ import { UserInfo } from "./components/UserInfo";
 import { Container, Main } from "./styles";
 
 const Layout = () => {
-  
-
   return (
     <Container>
-       <Header />
+      <Header />
       <Main>
         <Outlet />
-     <UserInfo  />
+        <UserInfo />
       </Main>
     </Container>
   );

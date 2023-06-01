@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { NoAvatarLarge } from "assets/vectors";
+import { NoAvatar } from "assets/vectors";
 
 import { IAvatarProps } from "./types";
 
@@ -15,30 +15,22 @@ import {
 const Avatar: FC<IAvatarProps> = ({
   avatar,
   isLoading,
-  isShowChangeAvatar,
+
   uploadAvatar,
-  handleMouseEnterShowChangeAvatar,
-  handleMouseLeaveShowChangeAvatar,
+
   handleClickUploadAvatar,
   handleChangeUploadAvatar,
 }) => {
   return (
-    <AvatarWrapper
-      onMouseEnter={handleMouseEnterShowChangeAvatar}
-      onMouseLeave={handleMouseLeaveShowChangeAvatar}
-    >
+    <AvatarWrapper>
       {avatar ? (
         <UserAvatar src={avatar} alt="avatar" />
       ) : (
         <NoAvatarWrapper>
-          <NoAvatarLarge />
+          <NoAvatar />
         </NoAvatarWrapper>
       )}
-      <Overline
-        $isShowChangeAvatar={isShowChangeAvatar}
-        $isLoading={isLoading}
-        onClick={handleClickUploadAvatar}
-      >
+      <Overline $isLoading={isLoading} onClick={handleClickUploadAvatar}>
         <p>change avatar</p>
       </Overline>
       <ChooseFile

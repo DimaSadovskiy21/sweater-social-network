@@ -8,7 +8,7 @@ import { IFileResponse } from "types/file";
 import { TAxiosRequestError } from "types/error";
 import { generateNotification } from "utils/generateNotification";
 
-import { USER } from "./constants";
+import { MESSAGES, USER } from "./constants";
 import { handleResponseError } from "../utils";
 import { QUERY_KEYS } from "../constants";
 import { instance } from "../base";
@@ -20,10 +20,13 @@ export const useChangeAvatar = (): UseMutationResult<
 > => {
   const queryClient = useQueryClient();
 
-  const handleSuccessResponse = () =>
-    queryClient.invalidateQueries({
+  const handleSuccessResponse = () => {
+    generateNotification({ type: "success", content: MESSAGES.AVATAR });
+
+    return queryClient.invalidateQueries({
       queryKey: [QUERY_KEYS.USER_PROFILE],
     });
+  };
 
   const handleErrorResponse = (error: TAxiosRequestError) => {
     const message = handleResponseError(error);
@@ -43,6 +46,7 @@ export const useChangeAvatar = (): UseMutationResult<
     {
       onSuccess: handleSuccessResponse,
       onError: handleErrorResponse,
+      
     }
   );
 };

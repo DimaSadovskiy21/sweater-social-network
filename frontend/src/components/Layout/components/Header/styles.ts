@@ -29,20 +29,11 @@ export const MenuWrapper = styled("div")({
   gap: "40px",
 });
 
-export const UserAvatar = styled("img")({
-  width: "46px",
-  height: "46px",
-  borderRadius: "50%",
-});
-
-export const NoAvatarWrapper = styled("div")({
+export const LogoutWrapper = styled("div")({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  width: "46px",
-  height: "46px",
-  borderRadius: "50%",
-  background: "var(--blue)",
+  width: "fit-content",
+  height: "fit-content",
+  cursor: "pointer",
 });
-
-

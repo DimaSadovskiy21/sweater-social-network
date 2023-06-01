@@ -28,7 +28,11 @@ const Status: FC<IStatusProps> = ({
         />
       ) : (
         <CustomStatus $isLoading={isLoading} onClick={handleClickEditStatus}>
-          {statusLocal ? statusLocal : <NoStatus>add a status...</NoStatus>}
+          {statusLocal?.trim() ? (
+            statusLocal
+          ) : (
+            <NoStatus>add a status...</NoStatus>
+          )}
         </CustomStatus>
       )}
     </StatusWrapper>

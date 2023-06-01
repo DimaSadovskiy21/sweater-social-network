@@ -23,6 +23,5 @@ export const useGetUserProfile = (): UseQueryResult<
     {
       retry: false,
       refetchOnWindowFocus: false,
-      notifyOnChangeProps: "all",
     }
   );
