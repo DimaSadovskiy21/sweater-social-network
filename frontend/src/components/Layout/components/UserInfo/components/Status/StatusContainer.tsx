@@ -29,7 +29,7 @@ const StatusContainer = () => {
   };
 
   const handleClickSaveStatus = () => {
-    statusLocal && changeStatus({ status: statusLocal });
+    statusLocal !== undefined && changeStatus({ status: statusLocal });
     setEditStatus(false);
   };
 
