@@ -19,8 +19,13 @@ export const UserAvatarWrapper = styled("div")({
   alignItems: "center",
 });
 
-
-
 export const Username = styled("p")({
+  color: "var(--dark-blue)",
+});
 
+export const ActivityInfoWrapper = styled("div")({
+  display: "flex",
+  gap: "10px",
+  fontSize: "var(--small-font)",
+  color: "var(--dark-gray)"
 })

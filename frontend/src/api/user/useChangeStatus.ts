@@ -4,19 +4,20 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 
-import { IFileResponse } from "types/file";
+import { IUserResponse } from "types/user";
 import { TAxiosRequestError } from "types/error";
 import { generateNotification } from "utils/generateNotification";
 
+import { IChangeStatusArgs } from "./types";
 import { USER } from "./constants";
 import { handleResponseError } from "../utils";
 import { QUERY_KEYS } from "../constants";
 import { instance } from "../base";
 
-export const useChangeAvatar = (): UseMutationResult<
-  IFileResponse,
+export const useChangeStatus = (): UseMutationResult<
+  IUserResponse,
   TAxiosRequestError,
-  FormData
+  IChangeStatusArgs
 > => {
   const queryClient = useQueryClient();
 
@@ -32,13 +33,13 @@ export const useChangeAvatar = (): UseMutationResult<
   };
 
   return useMutation(
-    async (payload: FormData) => {
-      const { data: userAvatarResponse } = await instance.post(
-        USER.CHANGE_AVATAR,
+    async (payload: IChangeStatusArgs) => {
+      const { data: userProfileResponse } = await instance.patch(
+        USER.CHANGE_STATUS,
         payload
       );
 
-      return userAvatarResponse;
+      return userProfileResponse;
     },
     {
       onSuccess: handleSuccessResponse,

@@ -1,7 +1,6 @@
 import { FC } from "react";
 
 import { NoAvatarLarge } from "assets/vectors";
-import { MiniLoader } from "components/MiniLoader";
 
 import { IAvatarProps } from "./types";
 
@@ -40,7 +39,7 @@ const Avatar: FC<IAvatarProps> = ({
         $isLoading={isLoading}
         onClick={handleClickUploadAvatar}
       >
-        {isLoading ? <MiniLoader /> : <p>change avatar</p>}
+        <p>change avatar</p>
       </Overline>
       <ChooseFile
         type="file"

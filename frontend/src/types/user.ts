@@ -4,4 +4,5 @@ export interface IUserResponse {
     username: string;
     isActivated: boolean;
     avatar: string;
+    status: string;
   }
