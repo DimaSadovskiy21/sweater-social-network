@@ -2,9 +2,10 @@ import { UseQueryResult, useQuery } from "@tanstack/react-query";
 
 import { IUserResponse } from "types/user";
 import { TAxiosRequestError } from "types/error";
-import { instance } from "api/base";
+
 
 import { AUTH } from "./constants";
+import { instance } from "../base";
 import { QUERY_KEYS } from "../constants";
 
 export const useGetUserProfile = (): UseQueryResult<

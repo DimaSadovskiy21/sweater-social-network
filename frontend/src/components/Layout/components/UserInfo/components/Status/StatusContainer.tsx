@@ -31,7 +31,7 @@ const StatusContainer = () => {
     setEditStatus(true);
   };
 
-  const handleClickSaveStatus = () => {
+  const handleBlurSaveStatus = () => {
     statusLocal !== undefined && changeStatus({ status: statusLocal.trim() });
     setEditStatus(false);
   };
@@ -43,7 +43,7 @@ const StatusContainer = () => {
       editStatus={editStatus}
       statusLocal={statusLocal}
       isLoading={isLoading}
-      handleClickSaveStatus={handleClickSaveStatus}
+      handleBlurSaveStatus={handleBlurSaveStatus}
       handleChangeStatusLocal={handleChangeStatusLocal}
       handleClickEditStatus={handleClickEditStatus}
     />

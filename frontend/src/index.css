@@ -31,4 +31,6 @@ body {
   --gray: rgba(105, 105, 105, 0.397);
   --dark-gray: rgba(88, 87, 87, 0.822);
   --overline: rgba(0, 0, 0, .3);
+  --red: #f54d3e;
+  --light-red: #e74133;
 }

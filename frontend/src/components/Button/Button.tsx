@@ -1,8 +1,9 @@
 import { FC } from "react";
 
+import { MiniLoader } from "components/Loaders/MiniLoader";
+
 import { IButtonProps } from "./types";
 import { CustomButton } from "./styles";
-import { MiniLoader } from "../MiniLoader";
 
 const Button: FC<IButtonProps> = ({ children, isLoading, ...restProps }) => (
   <CustomButton {...restProps}>

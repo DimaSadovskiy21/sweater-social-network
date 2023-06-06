@@ -12,7 +12,7 @@ const Status: FC<IStatusProps> = ({
   editStatus,
   statusLocal,
   isLoading,
-  handleClickSaveStatus,
+  handleBlurSaveStatus,
   handleChangeStatusLocal,
   handleClickEditStatus,
 }) => {
@@ -21,7 +21,7 @@ const Status: FC<IStatusProps> = ({
       {editStatus ? (
         <EditStatusArea
           value={statusLocal}
-          onBlur={handleClickSaveStatus}
+          onBlur={handleBlurSaveStatus}
           onChange={handleChangeStatusLocal}
           autoFocus
           maxLength={100}

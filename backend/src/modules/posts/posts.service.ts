@@ -31,7 +31,21 @@ export class PostsService {
     const [{ posts, totalCount }] = await this.postModel.aggregate([
       {
         $facet: {
-          posts: [{ $skip: skip }, { $limit: limit }],
+          posts: [
+            { $sort: { createdAt: -1 } },
+            { $skip: skip },
+            { $limit: limit },
+            {
+              $lookup: {
+                from: 'users',
+                localField: 'author',
+                foreignField: '_id',
+                as: 'author',
+                pipeline: [{ $project: { username: 1, avatar: 1 } }],
+              },
+            },
+            { $unwind: '$author' },
+          ],
           totalCount: [{ $count: 'totalItems' }],
         },
       },
@@ -65,7 +79,21 @@ export class PostsService {
       },
       {
         $facet: {
-          posts: [{ $skip: skip }, { $limit: limit }],
+          posts: [
+            { $sort: { createdAt: -1 } },
+            { $skip: skip },
+            { $limit: limit },
+            {
+              $lookup: {
+                from: 'users',
+                localField: 'author',
+                foreignField: '_id',
+                as: 'author',
+                pipeline: [{ $project: { username: 1, avatar: 1 } }],
+              },
+            },
+            { $unwind: '$author' },
+          ],
           totalCount: [{ $count: 'totalItems' }],
         },
       },

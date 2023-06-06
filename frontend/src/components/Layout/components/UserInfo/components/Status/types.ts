@@ -4,7 +4,7 @@ export interface IStatusProps {
   editStatus: boolean;
   statusLocal: string | undefined;
   isLoading: boolean;
-  handleClickSaveStatus: () => void;
+  handleBlurSaveStatus: () => void;
   handleChangeStatusLocal: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   handleClickEditStatus: () => void;
 }
