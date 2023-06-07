@@ -7,3 +7,8 @@ export interface IToggleFavoriteArgs {
 }
 
 export interface IDeletePostArgs extends IToggleFavoriteArgs {}
+
+export interface IUpdatePostArgs {
+  postId: string;
+  content: string;
+}

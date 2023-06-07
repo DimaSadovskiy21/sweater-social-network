@@ -1,8 +1,6 @@
 import { FC } from "react";
-import { useQueryClient } from "@tanstack/react-query";
 
-import { IUserResponse } from "types/user";
-import { QUERY_KEYS } from "api/constants";
+import { useUserProfileCache } from "hooks";
 import { useToggleFavorite } from "api/posts";
 
 import { IToggleFavoriteContainerProps } from "./types";
@@ -12,10 +10,7 @@ const ToggleFavoriteContainer: FC<IToggleFavoriteContainerProps> = ({
   postId,
   favoritedBy,
 }) => {
-  const queryClient = useQueryClient();
-  const userProfile = queryClient.getQueryData<IUserResponse>([
-    QUERY_KEYS.USER_PROFILE,
-  ]);
+  const userProfile = useUserProfileCache();
 
   const userId = userProfile?._id;
 

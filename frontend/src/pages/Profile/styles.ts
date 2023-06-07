@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import InfiniteScroll from "react-infinite-scroll-component";
+
 export const AddPostForm = styled("form")({
   display: "flex",
   flexDirection: "column",
@@ -19,4 +21,11 @@ export const AddPostField = styled("textarea")({
   fontFamily: "var(--delaGothicOne)",
   fontSize: "var(--small-font)",
   resize: "none",
+});
+
+export const PostsContainer= styled("div")({
+  display: "flex",
+  flexDirection: "column",
+  width: "100%",
+  padding: "20px 0",
 });

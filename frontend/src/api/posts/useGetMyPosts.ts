@@ -22,6 +22,8 @@ export const useGetMyPosts = (): UseInfiniteQueryResult<
         .then((response) => response.data.posts),
 
     {
+      retry: false,
+      refetchOnWindowFocus: false,
       getNextPageParam: (currentPage, allPages) =>
         !currentPage.length ? undefined : allPages.length + 1,
     }

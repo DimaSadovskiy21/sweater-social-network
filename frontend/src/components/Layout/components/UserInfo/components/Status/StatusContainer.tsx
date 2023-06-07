@@ -1,22 +1,16 @@
 import { ChangeEvent, useState } from "react";
-import { useQueryClient } from "@tanstack/react-query";
 
-import { IUserResponse } from "types/user";
-import { QUERY_KEYS } from "api/constants";
+import { useUserProfileCache } from "hooks";
 import { useChangeStatus } from "api/user";
 import { generateNotification } from "utils/generateNotification";
 
 import Status from "./Status";
 import { MESSAGES } from "../constants";
 
-
 const StatusContainer = () => {
   const { isLoading, mutate: changeStatus } = useChangeStatus();
 
-  const queryClient = useQueryClient();
-  const userProfile = queryClient.getQueryData<IUserResponse>([
-    QUERY_KEYS.USER_PROFILE,
-  ]);
+  const userProfile = useUserProfileCache();
 
   const status = userProfile?.status;
 

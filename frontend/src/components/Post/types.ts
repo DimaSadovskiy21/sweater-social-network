@@ -1,3 +1,16 @@
+import { ChangeEvent } from "react";
+
 import { IPostResponse } from "types/post";
 
-export interface IPostProps extends IPostResponse {}
+export interface IPostContainerProps extends IPostResponse {}
+
+export interface IPostProps
+  extends Omit<IPostResponse, "author" | "createdAt" | "updatedAt"> {
+  username: string;
+  editContent: boolean;
+  contentLocal: string;
+  handleClickEditStatus: () => void;
+  handleClickDeletePost: () => void;
+  handleChangeContent: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+  handleBlurSaveContent: () => void;
+}

@@ -1,9 +1,8 @@
 import { useRef } from "react";
-import { useQueryClient } from "@tanstack/react-query";
 
+import { useUserProfileCache } from "hooks";
 import { useChangeAvatar } from "api/user";
-import { IUserResponse } from "types/user";
-import { QUERY_KEYS } from "api/constants";
+
 import { generateNotification } from "utils/generateNotification";
 
 import Avatar from "./Avatar";
@@ -14,10 +13,7 @@ const AvatarContainer = () => {
 
   const uploadAvatar = useRef<HTMLInputElement | null>(null);
 
-  const queryClient = useQueryClient();
-  const userProfile = queryClient.getQueryData<IUserResponse>([
-    QUERY_KEYS.USER_PROFILE,
-  ]);
+  const userProfile = useUserProfileCache();
 
   const avatar = userProfile?.avatar;
 

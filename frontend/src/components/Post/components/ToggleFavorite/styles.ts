@@ -6,21 +6,19 @@ export const CustomToggleFavorites = styled(
   "button"
 )<ICustomToggleFavoritesStyledProps>(({ $checkFavoritedBy }) => ({
   padding: "0 20px 0 10px",
-  borderRadius: "10px",
-  boxShadow: "0px 0px 5px 7px #e7413373",
-  backgroundColor: $checkFavoritedBy ? "var(--light-red)" : "var(--red)",
+  borderRadius: "5px",
+  backgroundColor: "transparent",
   color: "var(--white)",
-  fontSize: "17px",
+  fontSize: "var(--medium-font)",
   border: "none",
   display: "flex",
   alignItems: "center",
   transition: "all .5s ease-in-out",
-  letterSpacing: "2px",
+
   cursor: "pointer",
   ":hover": {
-    backgroundColor: "var(--red)",
+    backgroundColor: "var(--dark-blue)",
     transition: "all .5s ease-in-out",
-    boxShadow: "0px 0px 5px 3px #e7413373",
   },
   ":before": {
     content: "''",
@@ -34,7 +32,6 @@ export const CustomToggleFavorites = styled(
     width: "50px",
     height: "50px",
     display: "block",
-    marginRight: "5px",
     transition: "all .9s ease-in-out",
   },
 }));

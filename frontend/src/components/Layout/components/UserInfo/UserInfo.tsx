@@ -1,17 +1,12 @@
-import { useQueryClient } from "@tanstack/react-query";
-
-import { IUserResponse } from "types/user";
-import { QUERY_KEYS } from "api/constants";
+import { useUserProfileCache } from "hooks";
 
 import { UserAvatarWrapper, UserInfoWrapper, Username } from "./styles";
 import { Avatar } from "./components/Avatar";
 import { Status } from "./components/Status";
 
+
 const UserInfo = () => {
-  const queryClient = useQueryClient();
-  const userProfile = queryClient.getQueryData<IUserResponse>([
-    QUERY_KEYS.USER_PROFILE,
-  ]);
+  const userProfile = useUserProfileCache();
 
   const username = userProfile?.username;
 
@@ -21,8 +16,7 @@ const UserInfo = () => {
         <Avatar />
         {username && <Username>@{username}</Username>}
       </UserAvatarWrapper>
-      <Status/>
-      
+      <Status />
     </UserInfoWrapper>
   );
 };

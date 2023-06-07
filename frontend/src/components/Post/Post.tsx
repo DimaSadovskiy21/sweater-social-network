@@ -1,31 +1,47 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 
 import { IPostProps } from "./types";
-import { DeletePostStyled, EditPostStyled, PostWrapper } from "./styles";
+import {
+  ButtonsWrapper,
+  DeletePostStyled,
+  EditPostField,
+  EditPostStyled,
+  InfoPostWrapper,
+  PostWrapper,
+} from "./styles";
 import { ToggleFavorite } from "./components/ToggleFavorite";
-import { useDeletePost } from "api/posts/useDeletePost";
 
-const Post: FC<IPostProps> = ({ _id, content, favoritedBy, author }) => {
-  const { username } = author;
-
-  const { mutate: deletePost } = useDeletePost();
-
-  const [editStatus, setEditStatus] = useState(false);
-
-  const [contentLocal, setContentLocal] = useState(content)
-
-  const handleClickDeletePost = () => deletePost({ postId: _id });
-
-  const handleClickEditStatus = () => setEditStatus(!editStatus);
-
+const Post: FC<IPostProps> = ({
+  _id,
+  content,
+  favoritedBy,
+  username,
+  editContent,
+  contentLocal,
+  handleClickEditStatus,
+  handleClickDeletePost,
+  handleChangeContent,
+  handleBlurSaveContent,
+}) => {
   return (
     <PostWrapper>
-      <DeletePostStyled onClick={handleClickDeletePost} />
-      <EditPostStyled onClick={handleClickEditStatus} />
-      {editStatus ? <textarea value={contentLocal}/> : <p>{contentLocal}</p>}
-      <p>Like : {favoritedBy.length}</p>
-      <p>author: {username}</p>
-      <ToggleFavorite postId={_id} favoritedBy={favoritedBy} />
+      <ButtonsWrapper>
+        <EditPostStyled onClick={handleClickEditStatus} />
+        <DeletePostStyled onClick={handleClickDeletePost} />
+      </ButtonsWrapper>
+      {editContent ? (
+        <EditPostField
+          value={contentLocal}
+          onChange={handleChangeContent}
+          onBlur={handleBlurSaveContent}
+        />
+      ) : (
+        <p>{content}</p>
+      )}
+      <InfoPostWrapper>
+        <p>author: @{username}</p>
+        <ToggleFavorite postId={_id} favoritedBy={favoritedBy} />
+      </InfoPostWrapper>
     </PostWrapper>
   );
 };
