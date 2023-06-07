@@ -10,7 +10,7 @@ import { POST } from "./constants";
 import { instance } from "../base";
 import { QUERY_KEYS } from "../constants";
 
-export const useGetMyPosts = (): UseInfiniteQueryResult<
+export const useGetPosts = (): UseInfiniteQueryResult<
   IPostResponse[],
   TAxiosRequestError
 > =>
@@ -18,7 +18,7 @@ export const useGetMyPosts = (): UseInfiniteQueryResult<
     [QUERY_KEYS.POSTS],
     async ({ pageParam = 1 }) =>
       await instance
-        .get(`${POST.MY_POSTS}?page=${pageParam}`)
+        .get(`${POST.POSTS}?page=${pageParam}`)
         .then((response) => response.data.posts),
 
     {

@@ -8,6 +8,7 @@ export interface IPostProps
   extends Omit<IPostResponse, "author" | "createdAt" | "updatedAt"> {
   username: string;
   editContent: boolean;
+  isOwner: boolean;
   contentLocal: string;
   handleClickEditStatus: () => void;
   handleClickDeletePost: () => void;

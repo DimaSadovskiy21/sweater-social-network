@@ -7,6 +7,7 @@ import { Login } from "pages/Login";
 import { ForgotPassword } from "pages/ForgotPassword";
 import { ChangePassword } from "pages/ChangePassword";
 import { Profile } from "pages/Profile";
+import { Posts } from "pages/Posts";
 import Error from "pages/Error";
 import { useGetUserProfile } from "api/auth";
 import { ROUTES } from "common/constants";
@@ -30,7 +31,7 @@ const App = () => {
             element={<Navigate to={ROUTES.PROFILE} />}
           />
           <Route path={ROUTES.PROFILE} element={<Profile />} />
-          <Route path={ROUTES.POSTS} element={<div>posts</div>} />
+          <Route path={ROUTES.POSTS} element={<Posts />} />
           <Route path={ROUTES.CHATS} element={<div>CHATS</div>} />
           <Route path={ROUTES.FAVORITES} element={<div>FAVORITES</div>} />
         </Route>

@@ -20,7 +20,7 @@ const ToggleFavoriteContainer: FC<IToggleFavoriteContainerProps> = ({
     userId && toggleFavorite({ postId });
   };
 
-  const checkFavoritedBy = userId && favoritedBy.indexOf(userId);
+  const checkFavoritedBy = userId && favoritedBy.includes(userId);
 
   return (
     <ToggleFavorite

@@ -23,7 +23,7 @@ export const useUpdatePost = (): UseMutationResult<
 
   const handleSuccessResponse = () => {
     return queryClient.invalidateQueries({
-      queryKey: [QUERY_KEYS.MY_POSTS],
+      queryKey: [QUERY_KEYS.POSTS],
     });
   };
 

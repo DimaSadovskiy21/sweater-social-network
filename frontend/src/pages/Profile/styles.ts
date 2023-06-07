@@ -23,7 +23,7 @@ export const AddPostField = styled("textarea")({
   resize: "none",
 });
 
-export const PostsContainer= styled("div")({
+export const PostsWrapper = styled("div")({
   display: "flex",
   flexDirection: "column",
   width: "100%",

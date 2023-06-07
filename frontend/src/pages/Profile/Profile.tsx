@@ -6,7 +6,7 @@ import { Post } from "components/Post";
 import { Preloader } from "components/Loaders/Preloader";
 
 import { IAddPostValues, IProfileProps } from "./types";
-import { AddPostField, AddPostForm, PostsContainer } from "./styles";
+import { AddPostField, AddPostForm, PostsWrapper } from "./styles";
 import { PageWrapper } from "../styles";
 
 const Profile: FC<IProfileProps<IAddPostValues>> = ({
@@ -37,7 +37,7 @@ const Profile: FC<IProfileProps<IAddPostValues>> = ({
           Add Post
         </Button>
       </AddPostForm>
-      <PostsContainer>
+      <PostsWrapper>
         <InfiniteScroll
           next={fetchNextPage}
           hasMore={hasNextPage || false}
@@ -48,7 +48,7 @@ const Profile: FC<IProfileProps<IAddPostValues>> = ({
             page.map((post) => <Post key={post._id} {...post} />)
           )}
         </InfiniteScroll>
-      </PostsContainer>
+      </PostsWrapper>
     </PageWrapper>
   );
 };

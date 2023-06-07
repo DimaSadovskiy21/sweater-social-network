@@ -16,6 +16,7 @@ const Post: FC<IPostProps> = ({
   content,
   favoritedBy,
   username,
+  isOwner,
   editContent,
   contentLocal,
   handleClickEditStatus,
@@ -25,10 +26,12 @@ const Post: FC<IPostProps> = ({
 }) => {
   return (
     <PostWrapper>
-      <ButtonsWrapper>
-        <EditPostStyled onClick={handleClickEditStatus} />
-        <DeletePostStyled onClick={handleClickDeletePost} />
-      </ButtonsWrapper>
+      {isOwner && (
+        <ButtonsWrapper>
+          <EditPostStyled onClick={handleClickEditStatus} />
+          <DeletePostStyled onClick={handleClickDeletePost} />
+        </ButtonsWrapper>
+      )}
       {editContent ? (
         <EditPostField
           value={contentLocal}

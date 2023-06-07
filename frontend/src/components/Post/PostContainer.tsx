@@ -1,5 +1,6 @@
 import { ChangeEvent, FC, useState } from "react";
 
+import { useUserProfileCache } from "hooks";
 import { useDeletePost, useUpdatePost } from "api/posts";
 
 import { IPostContainerProps } from "./types";
@@ -32,7 +33,13 @@ const PostContainer: FC<IPostContainerProps> = ({
     setEditContent(false);
   };
 
-  const { username } = author;
+  const { _id: authorId, username } = author;
+
+  const userProfile = useUserProfileCache();
+
+  const userId = userProfile?._id;
+
+  const isOwner = userId === authorId;
 
   return (
     <Post
@@ -40,13 +47,13 @@ const PostContainer: FC<IPostContainerProps> = ({
       content={content}
       favoritedBy={favoritedBy}
       username={username}
+      isOwner={isOwner}
       editContent={editContent}
       contentLocal={contentLocal}
       handleClickEditStatus={handleClickEditStatus}
       handleClickDeletePost={handleClickDeletePost}
       handleChangeContent={handleChangeContent}
-      handleBlurSaveContent={handleBlurSaveContent}
-    />
+      handleBlurSaveContent={handleBlurSaveContent}     />
   );
 };
 

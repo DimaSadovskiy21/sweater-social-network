@@ -129,6 +129,16 @@ export class PostsService {
   async deletePostById(deletePostDto: DeletePostDto) {
     const { userId, postId } = deletePostDto;
 
+    const post = await this.postModel.findById(postId);
+
+    post.favoritedBy.forEach(async (userId) => {
+      const user = await this.usersService.findUserById(userId);
+      user.favoritesPosts = user.favoritesPosts.filter(
+        (id) => id.toString() !== postId,
+      );
+      user.save();
+    });
+
     const deletedPost = await this.postModel.findOneAndRemove({
       _id: postId,
       author: userId,
