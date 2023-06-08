@@ -12,6 +12,7 @@ import Error from "pages/Error";
 import { useGetUserProfile } from "api/auth";
 import { ROUTES } from "common/constants";
 import { Layout } from "components/Layout";
+import { Favorites } from "pages/Favorites";
 
 const App = () => {
   const { status } = useGetUserProfile();
@@ -33,7 +34,7 @@ const App = () => {
           <Route path={ROUTES.PROFILE} element={<Profile />} />
           <Route path={ROUTES.POSTS} element={<Posts />} />
           <Route path={ROUTES.CHATS} element={<div>CHATS</div>} />
-          <Route path={ROUTES.FAVORITES} element={<div>FAVORITES</div>} />
+          <Route path={ROUTES.FAVORITES} element={<Favorites />} />
         </Route>
       </Route>
       <Route path={ROUTES.NOTFOUND} element={<Error />} />

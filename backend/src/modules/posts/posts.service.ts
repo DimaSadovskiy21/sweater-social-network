@@ -116,6 +116,30 @@ export class PostsService {
     };
   }
 
+  async getFavoritesPosts(myPostsDto: MyPostsDto) {
+    const { userId, page, limit } = myPostsDto;
+    const skip = (page - 1) * limit;
+
+    const user = await (
+      await this.usersService.findUserById(userId)
+    ).populate({
+      path: 'favoritesPosts',
+      options: {
+        sort: { updatedAt: -1 },
+        skip,
+        limit,
+      },
+      populate: {
+        path: 'author',
+        select: '_id username',
+      },
+    });
+
+    const favoritesPosts = user.favoritesPosts;
+
+    return favoritesPosts;
+  }
+
   async getPostById(postId: string) {
     return await this.postModel.findById(postId);
   }

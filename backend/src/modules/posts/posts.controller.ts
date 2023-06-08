@@ -40,6 +40,18 @@ export class PostsController {
     });
   }
 
+  @Get(SUBROUTES.GET_FAVORITES_POSTS)
+  @UseGuards(AccessJwtAuthGuard, RefreshJwtAuthGuard)
+  async getFavoritesPosts(
+    @GetPostsQuery() postsDto: PostsDto,
+    @Req() req: Request,
+  ) {
+    const userId = req.user['_id'];
+    const { page, limit } = postsDto;
+
+    return await this.postsService.getFavoritesPosts({ userId, page, limit });
+  }
+
   @Get(SUBROUTES.GET_POST)
   @UseGuards(AccessJwtAuthGuard, RefreshJwtAuthGuard)
   async getPost(@Param('postId') postId: string) {

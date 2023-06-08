@@ -1,15 +1,15 @@
-import { useGetPosts } from "api/posts";
+import { useGetFavoritesPosts } from "api/posts";
 
-import Posts from "./Posts";
+import Favorites from "./Favorites";
 
-const PostsContainer = () => {
-  const { data, hasNextPage, fetchNextPage } = useGetPosts();
+const FavoritesContainer = () => {
+  const { data, hasNextPage, fetchNextPage } = useGetFavoritesPosts();
 
   const dataLength =
     data?.pages.reduce((total, page) => total + page.length, 0) || 0;
 
   return (
-    <Posts
+    <Favorites
       posts={data?.pages}
       dataLength={dataLength}
       hasNextPage={hasNextPage}
@@ -18,4 +18,4 @@ const PostsContainer = () => {
   );
 };
 
-export default PostsContainer;
+export default FavoritesContainer;
