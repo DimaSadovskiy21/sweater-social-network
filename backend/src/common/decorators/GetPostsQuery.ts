@@ -1,6 +1,7 @@
 import { ExecutionContext, createParamDecorator } from '@nestjs/common';
+import { Types } from 'mongoose';
 
-import { PostsDto } from 'modules/posts/dto';
+import { PostsDto } from 'common/dto';
 
 export const GetPostsQuery = createParamDecorator(
   (_data: unknown, ctx: ExecutionContext): PostsDto => {
@@ -9,6 +10,11 @@ export const GetPostsQuery = createParamDecorator(
 
     const page = Number(query.page) || 1;
     const limit = Number(query.limit) || 10;
+    const userId = query.userId;
+    if (userId) {
+      return { page, limit, userId: new Types.ObjectId(userId) };
+    }
+
     return { page, limit };
   },
 );

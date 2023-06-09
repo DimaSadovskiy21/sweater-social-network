@@ -17,7 +17,6 @@ export const SUBROUTES = {
   ACTIVATE: 'activate',
   ACTIVATE_TOKEN: 'activate/:token',
 
-  GET_MY_POSTS: 'my-posts',
   GET_FAVORITES_POSTS: 'favorites',
   GET_POST: ':postId',
   DELETE_POST: ':postId',

@@ -1,12 +1,18 @@
 import { useFormik } from "formik";
 
-import { useCreatePost, useGetMyPosts } from "api/posts";
+import { useUserProfileCache } from "hooks";
+
+import { useCreatePost, useGetPosts } from "api/posts";
 
 import { INITIAL_VALUES } from "./constants";
 import Profile from "./Profile";
 
 const ProfileContainer = () => {
-  const { data, hasNextPage, fetchNextPage } = useGetMyPosts();
+  const userProfile = useUserProfileCache();
+
+  const userId = userProfile?._id;
+
+  const { data, hasNextPage, fetchNextPage } = useGetPosts(userId);
 
   const { isLoading, mutate: createPost } = useCreatePost();
 

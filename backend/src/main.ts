@@ -4,14 +4,17 @@ import { ValidationPipe } from '@nestjs/common';
 import * as cookieParser from 'cookie-parser';
 import * as express from 'express';
 
-import { AppModule } from 'modules/app/app.module';
+import { AppModule } from 'app.module';
 import { join } from 'path';
+import { configurations } from 'configurations';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  const client_url = configurations().client_url;
+
   const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: client_url,
     credentials: true,
     optionSuccessStatus: 200,
   };
