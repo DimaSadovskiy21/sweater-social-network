@@ -14,6 +14,7 @@ import { Types } from 'mongoose';
 import { AccessJwtAuthGuard, RefreshJwtAuthGuard } from 'common/guards';
 import { ROUTES, SUBROUTES } from 'common/constants';
 import { GetUserId } from 'common/decorators';
+import { generateResponseError } from 'common/utils';
 import { UsersService } from 'models/users/users.service';
 
 import { ChangeStatusDto } from './dto';
@@ -30,11 +31,15 @@ export class UsersController {
     @Param('token') token: string,
     @Res({ passthrough: true }) res: Response,
   ) {
-    const userData = await this.usersService.activateUser(token);
+    try {
+      const userData = await this.usersService.activateUser(token);
 
-    await this.usersService.setCookie(res, userData);
+      await this.usersService.setCookie(res, userData);
 
-    return res.redirect(this.configService.get('client_url'));
+      return res.redirect(this.configService.get('client_url'));
+    } catch (error) {
+      generateResponseError(error);
+    }
   }
 
   @Patch(SUBROUTES.CHANGE_STATUS)
@@ -43,10 +48,14 @@ export class UsersController {
     @GetUserId() userId: Types.ObjectId,
     @Body() changeStatusDto: ChangeStatusDto,
   ) {
-    const { status } = changeStatusDto;
+    try {
+      const { status } = changeStatusDto;
 
-    const userData = await this.usersService.changeStatus({ userId, status });
+      const userData = await this.usersService.changeStatus({ userId, status });
 
-    return userData;
+      return userData;
+    } catch (error) {
+      generateResponseError(error);
+    }
   }
 }

@@ -22,7 +22,6 @@ import { UsersService } from 'models/users/users.service';
 
 import { ChangePasswordDto, LoginUserDto, ForgotPasswordDto } from './dto';
 import { AuthService } from './auth.service';
-import { ERROR } from './common/errors';
 
 @Controller(ROUTES.AUTH)
 export class AuthController {
@@ -40,7 +39,7 @@ export class AuthController {
 
       return userData;
     } catch (error) {
-      generateResponseError(error, ERROR.REGISTRATION);
+      generateResponseError(error);
     }
   }
 
@@ -48,11 +47,15 @@ export class AuthController {
     @Body() loginUserDto: LoginUserDto,
     @Res({ passthrough: true }) res: Response,
   ) {
-    const userData = await this.authService.login(loginUserDto);
+    try {
+      const userData = await this.authService.login(loginUserDto);
 
-    await this.usersService.setCookie(res, userData);
+      await this.usersService.setCookie(res, userData);
 
-    return userData;
+      return userData;
+    } catch (error) {
+      generateResponseError(error);
+    }
   }
 
   @Delete(SUBROUTES.LOGOUT)
@@ -61,20 +64,28 @@ export class AuthController {
     @GetTokens() tokens: TokensDto,
     @Res({ passthrough: true }) res: Response,
   ): Promise<boolean> {
-    const { refreshToken } = tokens;
+    try {
+      const { refreshToken } = tokens;
 
-    await this.authService.logout(refreshToken);
+      await this.authService.logout(refreshToken);
 
-    res.clearCookie('refreshToken');
-    res.clearCookie('accessToken');
+      res.clearCookie('refreshToken');
+      res.clearCookie('accessToken');
 
-    return true;
+      return true;
+    } catch (error) {
+      generateResponseError(error);
+    }
   }
 
   @Get()
   @UseGuards(AccessJwtAuthGuard, RefreshJwtAuthGuard)
   async getUserProfile(@GetUserId() userId: Types.ObjectId) {
-    return await this.authService.getUserProfile(userId);
+    try {
+      return await this.authService.getUserProfile(userId);
+    } catch (error) {
+      generateResponseError(error);
+    }
   }
 
   @Post(SUBROUTES.REFRESH)
@@ -83,18 +94,26 @@ export class AuthController {
     @GetUserId() userId: Types.ObjectId,
     @Res({ passthrough: true }) res: Response,
   ) {
-    const userData = await this.authService.refresh(userId);
+    try {
+      const userData = await this.authService.refresh(userId);
 
-    await this.usersService.setCookie(res, userData);
+      await this.usersService.setCookie(res, userData);
 
-    return userData;
+      return userData;
+    } catch (error) {
+      generateResponseError(error);
+    }
   }
 
   @Post(SUBROUTES.FORGOT_PASSWORD)
   async forgotPassword(@Body() forgotPasswordDto: ForgotPasswordDto) {
-    const { email } = forgotPasswordDto;
+    try {
+      const { email } = forgotPasswordDto;
 
-    return await this.authService.forgotPassword(email);
+      return await this.authService.forgotPassword(email);
+    } catch (error) {
+      generateResponseError(error);
+    }
   }
 
   @Get(SUBROUTES.FORGOT_PASSWORD_TOKEN)
@@ -102,11 +121,15 @@ export class AuthController {
     @Param('token') token: string,
     @Res() res: Response,
   ) {
-    return res.redirect(
-      `${this.configService.get('client_url')}/${
-        SUBROUTES.CHANGE_PASSWORD
-      }/${token}`,
-    );
+    try {
+      return res.redirect(
+        `${this.configService.get('client_url')}/${
+          SUBROUTES.CHANGE_PASSWORD
+        }/${token}`,
+      );
+    } catch (error) {
+      generateResponseError(error);
+    }
   }
 
   @Patch(SUBROUTES.CHANGE_PASSWORD)
@@ -114,10 +137,14 @@ export class AuthController {
     @Body() changePasswordDto: ChangePasswordDto,
     @Res({ passthrough: true }) res: Response,
   ) {
-    const userData = await this.authService.changePassword(changePasswordDto);
+    try {
+      const userData = await this.authService.changePassword(changePasswordDto);
 
-    await this.usersService.setCookie(res, userData);
+      await this.usersService.setCookie(res, userData);
 
-    return userData;
+      return userData;
+    } catch (error) {
+      generateResponseError(error);
+    }
   }
 }

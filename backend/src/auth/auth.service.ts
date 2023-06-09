@@ -17,6 +17,7 @@ import { MailService } from 'providers/mail/mail.service';
 
 import { LoginUserDto, ChangePasswordDto } from './dto';
 import { MESSAGES } from './common/constants';
+import { ERROR } from './common/errors';
 
 @Injectable()
 export class AuthService {
@@ -34,7 +35,7 @@ export class AuthService {
     const candidate = await this.usersService.findUserByEmail(email);
 
     if (candidate && candidate.isActivated)
-      throw new BadRequestException(APP_ERROR.USER_EXIST);
+      throw new BadRequestException(ERROR.USER_EXIST);
 
     if (candidate && !candidate.isActivated)
       await this.usersService.deleteUserByEmail(email);
@@ -49,13 +50,13 @@ export class AuthService {
 
     const user = await this.usersService.findUserByEmail(email);
 
-    if (!user) throw new BadRequestException(APP_ERROR.USER_NOT_EXIST);
+    if (!user) throw new BadRequestException(ERROR.USER_NOT_EXIST);
 
     if (!user.isActivated) throw new MethodNotAllowedException();
 
     const validatePassword = await bcrypt.compare(password, user.password);
 
-    if (!validatePassword) throw new BadRequestException(APP_ERROR.WRONG_DATA);
+    if (!validatePassword) throw new BadRequestException(ERROR.INCORRECT_DATA);
 
     const userDto = await this.usersService.getPublicUser(user);
 

@@ -14,6 +14,7 @@ import { AccessJwtAuthGuard, RefreshJwtAuthGuard } from 'common/guards';
 import { ROUTES, SUBROUTES } from 'common/constants';
 import { GetPostsQuery, GetUserId } from 'common/decorators';
 import { PostsDto } from 'common/dto';
+import { generateResponseError } from 'common/utils';
 
 import { PostDto } from './dto';
 import { PostsService } from './posts.service';
@@ -25,7 +26,11 @@ export class PostsController {
   @Get()
   @UseGuards(AccessJwtAuthGuard, RefreshJwtAuthGuard)
   async getPosts(@GetPostsQuery() postsDto: PostsDto) {
-    return await this.postsService.getPosts(postsDto);
+    try {
+      return await this.postsService.getPosts(postsDto);
+    } catch (error) {
+      generateResponseError(error);
+    }
   }
 
   @Get(SUBROUTES.GET_FAVORITES_POSTS)
@@ -34,23 +39,35 @@ export class PostsController {
     @GetPostsQuery() postsDto: PostsDto,
     @GetUserId() userId: Types.ObjectId,
   ) {
-    const { page, limit } = postsDto;
+    try {
+      const { page, limit } = postsDto;
 
-    return await this.postsService.getFavoritesPosts({ userId, page, limit });
+      return await this.postsService.getFavoritesPosts({ userId, page, limit });
+    } catch (error) {
+      generateResponseError(error);
+    }
   }
 
   @Get(SUBROUTES.GET_POST)
   @UseGuards(AccessJwtAuthGuard, RefreshJwtAuthGuard)
   async getPost(@Param('postId') postId: string) {
-    return await this.postsService.getPostById(postId);
+    try {
+      return await this.postsService.getPostById(postId);
+    } catch (error) {
+      generateResponseError(error);
+    }
   }
 
   @Post()
   @UseGuards(AccessJwtAuthGuard, RefreshJwtAuthGuard)
   async createPost(@Body() body: PostDto, @GetUserId() userId: Types.ObjectId) {
-    const { content } = body;
+    try {
+      const { content } = body;
 
-    return await this.postsService.createPost({ content, author: userId });
+      return await this.postsService.createPost({ content, author: userId });
+    } catch (error) {
+      generateResponseError(error);
+    }
   }
 
   @Delete(SUBROUTES.DELETE_POST)
@@ -59,7 +76,11 @@ export class PostsController {
     @Param('postId') postId: string,
     @GetUserId() userId: Types.ObjectId,
   ) {
-    return await this.postsService.deletePostById({ userId, postId });
+    try {
+      return await this.postsService.deletePostById({ userId, postId });
+    } catch (error) {
+      generateResponseError(error);
+    }
   }
 
   @Patch(SUBROUTES.UPDATE_POST)
@@ -69,9 +90,13 @@ export class PostsController {
     @Param('postId') postId: string,
     @GetUserId() userId: Types.ObjectId,
   ) {
-    const { content } = body;
+    try {
+      const { content } = body;
 
-    return await this.postsService.updatePost({ userId, postId, content });
+      return await this.postsService.updatePost({ userId, postId, content });
+    } catch (error) {
+      generateResponseError(error);
+    }
   }
 
   @Patch(SUBROUTES.TOGGLE_FAVORITE)
@@ -80,6 +105,10 @@ export class PostsController {
     @Param('postId') postId: string,
     @GetUserId() userId: Types.ObjectId,
   ) {
-    return await this.postsService.toggleFavorite({ userId, postId });
+    try {
+      return await this.postsService.toggleFavorite({ userId, postId });
+    } catch (error) {
+      generateResponseError(error);
+    }
   }
 }

@@ -13,6 +13,7 @@ import { Types } from 'mongoose';
 import { AccessJwtAuthGuard, RefreshJwtAuthGuard } from 'common/guards';
 import { ROUTES } from 'common/constants';
 import { GetUserId } from 'common/decorators';
+import { generateResponseError } from 'common/utils';
 
 import { fileStorage } from './storage';
 import { FilesService } from './files.service';
@@ -36,6 +37,10 @@ export class FilesController {
     file: Express.Multer.File,
     @GetUserId() userId: Types.ObjectId,
   ) {
-    return await this.filesService.uploadUserAvatar({ file, userId });
+    try {
+      return await this.filesService.uploadUserAvatar({ file, userId });
+    } catch (error) {
+      generateResponseError(error);
+    }
   }
 }
