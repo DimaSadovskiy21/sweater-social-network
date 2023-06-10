@@ -6,12 +6,13 @@ import * as express from 'express';
 
 import { AppModule } from 'app.module';
 import { join } from 'path';
-import { configurations } from 'configurations';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  const client_url = configurations().client_url;
+  const configService = app.get(ConfigService);
+
+  const client_url = configService.get('client_url');
 
   const corsOptions = {
     origin: client_url,
@@ -25,11 +26,9 @@ async function bootstrap() {
 
   app.use(cookieParser());
 
-  const configService = app.get(ConfigService);
+  app.useGlobalPipes(new ValidationPipe());
 
   const port = configService.get('port');
-
-  app.useGlobalPipes(new ValidationPipe());
 
   await app.listen(port);
 }
