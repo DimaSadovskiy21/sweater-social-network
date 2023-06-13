@@ -6,19 +6,19 @@ import { INITIAL_VALUES } from './constants';
 import { useRegister } from 'api/auth';
 
 const RegisterContainer = () => {
-  const { isLoading, mutate: register } = useRegister();
+  const { isLoading: isRegisterLoading, mutate: registerMutate } = useRegister();
 
   const formik = useFormik({
     initialValues: INITIAL_VALUES,
     validationSchema,
     validateOnBlur: true,
     onSubmit: (values, { resetForm }) => {
-      register(values);
+      registerMutate(values);
       resetForm({ values: INITIAL_VALUES });
     },
   });
 
-  return <Register formik={formik} isLoading={isLoading} />;
+  return <Register formik={formik} isLoading={isRegisterLoading} />;
 };
 
 export default RegisterContainer;

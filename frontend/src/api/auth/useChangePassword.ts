@@ -35,7 +35,7 @@ export const useChangePassword = (): UseMutationResult<
         AUTH.CHANGE_PASSWORD,
         payload
       );
-      console.log(userProfileResponse);
+      
       return userProfileResponse;
     },
     {

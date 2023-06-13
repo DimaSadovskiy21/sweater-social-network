@@ -1,12 +1,12 @@
 import { useGetPosts } from "api/posts";
+import { getDataLength } from "utils/getDataLength";
 
 import Posts from "./Posts";
 
 const PostsContainer = () => {
   const { data, hasNextPage, fetchNextPage } = useGetPosts();
 
-  const dataLength =
-    data?.pages.reduce((total, page) => total + page.length, 0) || 0;
+  const dataLength = getDataLength(data?.pages);
 
   return (
     <Posts

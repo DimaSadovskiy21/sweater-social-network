@@ -7,6 +7,7 @@ import {
 import { TAxiosRequestError } from "types/error";
 import { IPostResponse } from "types/post";
 import { generateNotification } from "utils/generateNotification";
+import { transformRoute } from "utils/routing";
 
 import { IDeletePostArgs } from "./types";
 import { POST } from "./constants";
@@ -37,7 +38,7 @@ export const useDeletePost = (): UseMutationResult<
     async (payload: IDeletePostArgs) => {
       const { postId } = payload;
       const { data: newPost } = await instance.delete(
-        `${POST.POSTS}${postId}`
+        transformRoute(POST.DELETE_POST, postId)
       );
 
       return newPost;

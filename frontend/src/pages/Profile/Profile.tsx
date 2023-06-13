@@ -7,20 +7,19 @@ import { Preloader } from "components/Loaders/Preloader";
 
 import { IAddPostValues, IProfileProps } from "./types";
 import { AddPostField, AddPostForm, PostsWrapper } from "./styles";
-import { PageWrapper } from "../styles";
 
 const Profile: FC<IProfileProps<IAddPostValues>> = ({
   formik,
   posts,
   dataLength,
   isLoading,
-  hasNextPage,
+  hasNextPage = false,
   fetchNextPage,
 }) => {
   const { values, handleSubmit, handleChange } = formik;
 
   return (
-    <PageWrapper>
+    <>
       <AddPostForm onSubmit={handleSubmit}>
         <AddPostField
           name="content"
@@ -40,7 +39,7 @@ const Profile: FC<IProfileProps<IAddPostValues>> = ({
       <PostsWrapper>
         <InfiniteScroll
           next={fetchNextPage}
-          hasMore={hasNextPage || false}
+          hasMore={hasNextPage}
           loader={<Preloader />}
           dataLength={dataLength}
         >
@@ -49,7 +48,7 @@ const Profile: FC<IProfileProps<IAddPostValues>> = ({
           )}
         </InfiniteScroll>
       </PostsWrapper>
-    </PageWrapper>
+    </>
   );
 };
 

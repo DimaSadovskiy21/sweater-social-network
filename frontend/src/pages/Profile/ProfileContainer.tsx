@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import { useUserProfileCache } from "hooks";
 
 import { useCreatePost, useGetPosts } from "api/posts";
+import { getDataLength } from "utils/getDataLength";
 
 import { INITIAL_VALUES } from "./constants";
 import Profile from "./Profile";
@@ -24,8 +25,7 @@ const ProfileContainer = () => {
     },
   });
 
-  const dataLength =
-    data?.pages.reduce((total, page) => total + page.length, 0) || 0;
+  const dataLength = getDataLength(data?.pages);
 
   return (
     <Profile

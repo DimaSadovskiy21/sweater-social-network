@@ -7,19 +7,19 @@ import { validationSchema } from './validation';
 import { INITIAL_VALUES } from './constants';
 
 const ForgotPasswordContainer = () => {
-  const { isLoading, mutate: forgotPassword } = useForgotPassword();
+  const { isLoading: isForgotPasswordLoading, mutate: forgotPasswordMutate } = useForgotPassword();
 
   const formik = useFormik({
     initialValues: INITIAL_VALUES,
     validationSchema,
     validateOnBlur: true,
     onSubmit: (values, { resetForm }) => {
-      forgotPassword(values);
+      forgotPasswordMutate(values);
       resetForm({ values: INITIAL_VALUES });
     },
   });
 
-  return <ForgotPassword formik={formik} isLoading={isLoading} />;
+  return <ForgotPassword formik={formik} isLoading={isForgotPasswordLoading} />;
 };
 
 export default ForgotPasswordContainer;

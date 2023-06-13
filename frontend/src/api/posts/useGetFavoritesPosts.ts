@@ -18,7 +18,7 @@ export const useGetFavoritesPosts = (): UseInfiniteQueryResult<
     [QUERY_KEYS.POSTS],
     async ({ pageParam = 1 }) =>
       await instance
-        .get(`${POST.FAVORITES_POSTS}?page=${pageParam}`)
+        .get(POST.FAVORITES_POSTS, { params: { page: pageParam } })
         .then((response) => response.data),
 
     {

@@ -11,10 +11,13 @@ export const GetPostsQuery = createParamDecorator(
     const page = Number(query.page) || 1;
     const limit = Number(query.limit) || 10;
     const userId = query.userId;
-    if (userId) {
-      return { page, limit, userId: new Types.ObjectId(userId) };
-    }
 
-    return { page, limit };
+    const postsDto = {
+      page,
+      limit,
+      ...(userId && { userId: new Types.ObjectId(userId) }),
+    };
+
+    return postsDto;
   },
 );

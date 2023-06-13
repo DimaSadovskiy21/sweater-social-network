@@ -1,31 +1,32 @@
 import { FC } from "react";
 
+import { IPagesProps } from "types/pages";
 import { FormLayout } from "components/FormLayout";
 import { Input } from "components/Input";
 import { Button } from "components/Button";
 
 import { IForgotPasswordValues } from "./types";
-import { IPagesProps } from "../types";
 
-const ForgotPassword: FC<IPagesProps<IForgotPasswordValues>> = ({ formik, isLoading }) => {
-  const { values, errors, touched, handleSubmit, handleBlur, handleChange } =
-    formik;
+const ForgotPassword: FC<IPagesProps<IForgotPasswordValues>> = ({
+  formik,
+  isLoading,
+}) => {
+  const { errors, touched, handleSubmit, getFieldProps } = formik;
 
   return (
     <FormLayout onSubmit={handleSubmit}>
       <Input
         type="email"
         placeholder="Email"
-        name="email"
-        value={values.email}
-        onBlur={handleBlur}
-        onChange={handleChange}
         touched={touched.email}
         errorMessage={errors.email}
         disabled={isLoading}
+        {...getFieldProps("email")}
       />
 
-      <Button type="submit" disabled={isLoading} isLoading={isLoading}>Send Email</Button>
+      <Button type="submit" disabled={isLoading} isLoading={isLoading}>
+        Send Email
+      </Button>
     </FormLayout>
   );
 };

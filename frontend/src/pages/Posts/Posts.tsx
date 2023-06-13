@@ -1,10 +1,8 @@
 import { FC } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import { PageWrapper } from "pages/styles";
 import { Post } from "components/Post";
 import { Preloader } from "components/Loaders/Preloader";
-
 
 import { IPostsProps } from "./types";
 import { PostsWrapper } from "./styles";
@@ -12,14 +10,13 @@ import { PostsWrapper } from "./styles";
 const Posts: FC<IPostsProps> = ({
   posts,
   dataLength,
-  hasNextPage,
+  hasNextPage = false,
   fetchNextPage,
 }) => (
-  <PageWrapper>
-    <PostsWrapper>
+  <PostsWrapper>
     <InfiniteScroll
       next={fetchNextPage}
-      hasMore={hasNextPage || false}
+      hasMore={hasNextPage}
       loader={<Preloader />}
       dataLength={dataLength}
     >
@@ -27,8 +24,7 @@ const Posts: FC<IPostsProps> = ({
         page.map((post) => <Post key={post._id} {...post} />)
       )}
     </InfiniteScroll>
-    </PostsWrapper>
-  </PageWrapper>
+  </PostsWrapper>
 );
 
 export default Posts;

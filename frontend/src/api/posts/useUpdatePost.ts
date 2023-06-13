@@ -7,6 +7,7 @@ import {
 import { TAxiosRequestError } from "types/error";
 import { IPostResponse } from "types/post";
 import { generateNotification } from "utils/generateNotification";
+import { transformRoute } from "utils/routing";
 
 import { IUpdatePostArgs } from "./types";
 import { POST } from "./constants";
@@ -36,9 +37,12 @@ export const useUpdatePost = (): UseMutationResult<
   return useMutation(
     async (payload: IUpdatePostArgs) => {
       const { postId, content } = payload;
-      const { data: newPost } = await instance.patch(`${POST.POSTS}${postId}`, {
-        content,
-      });
+      const { data: newPost } = await instance.patch(
+        transformRoute(POST.UPDATE_POST, postId),
+        {
+          content,
+        }
+      );
 
       return newPost;
     },

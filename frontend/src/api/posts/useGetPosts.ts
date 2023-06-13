@@ -16,13 +16,11 @@ export const useGetPosts = (
   useInfiniteQuery(
     [QUERY_KEYS.POSTS],
     async ({ pageParam = 1 }) => {
-      let url = `${POST.POSTS}?page=${pageParam}`;
+      const postsResponse = await instance.get(POST.POSTS, {
+        params: { page: pageParam, userId },
+      });
 
-      if (userId) {
-        url += `&userId=${userId}`;
-      }
-
-      return await instance.get(url).then((response) => response.data.posts);
+      return postsResponse.data.posts;
     },
 
     {

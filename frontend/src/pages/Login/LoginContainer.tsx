@@ -7,19 +7,19 @@ import { validationSchema } from './validation';
 import { INITIAL_VALUES } from './constants';
 
 export const LoginContainer = () => {
-  const { isLoading, mutate: login } = useLogin();
+  const { isLoading: isLoginLoading, mutate: loginMutate } = useLogin();
 
   const formik = useFormik({
     initialValues: INITIAL_VALUES,
     validationSchema,
     validateOnBlur: true,
     onSubmit: (values, { resetForm }) => {
-      login(values);
+      loginMutate(values);
       resetForm({ values: INITIAL_VALUES });
     },
   });
 
-  return <Login formik={formik} isLoading={isLoading} />;
+  return <Login formik={formik} isLoading={isLoginLoading} />;
 };
 
 export default LoginContainer;

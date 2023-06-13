@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { NavLink } from "react-router-dom";
 
+import { IPagesProps } from "types/pages";
 import { FormLayout } from "components/FormLayout";
 import { Input } from "components/Input";
 import { Button } from "components/Button";
@@ -8,49 +9,37 @@ import { ROUTES } from "common/constants";
 
 import { IRegisterValues } from "./types";
 import { SignIn } from "./styles";
-import { IPagesProps } from "../types";
 
 const Register: FC<IPagesProps<IRegisterValues>> = ({ formik, isLoading }) => {
-  const { values, errors, touched, handleSubmit, handleBlur, handleChange } =
-    formik;
+  const { errors, touched, handleSubmit, getFieldProps } = formik;
 
   return (
     <FormLayout onSubmit={handleSubmit}>
       <Input
-        type="email"
-        placeholder="Email"
-        name="email"
-        value={values.email}
-        onBlur={handleBlur}
-        onChange={handleChange}
-        touched={touched.email}
-        errorMessage={errors.email}
-        disabled={isLoading}
-      />
-
-      <Input
         type="text"
         placeholder="Username"
-        name="username"
-        value={values.username}
-        onBlur={handleBlur}
-        onChange={handleChange}
         touched={touched.username}
         errorMessage={errors.username}
         disabled={isLoading}
+        {...getFieldProps("username")}
+      />
+
+      <Input
+        type="email"
+        placeholder="Email"
+        touched={touched.email}
+        errorMessage={errors.email}
+        disabled={isLoading}
+        {...getFieldProps("email")}
       />
 
       <Input
         type="password"
         placeholder="Password"
-        name="password"
-        value={values.password}
-        onBlur={handleBlur}
-        onChange={handleChange}
         touched={touched.password}
         errorMessage={errors.password}
-        autoComplete="on"
         disabled={isLoading}
+        {...getFieldProps("password")}
       />
 
       <Button type="submit" disabled={isLoading} isLoading={isLoading}>

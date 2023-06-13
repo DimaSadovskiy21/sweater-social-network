@@ -7,6 +7,7 @@ import {
 import { TAxiosRequestError } from "types/error";
 import { IPostResponse } from "types/post";
 import { generateNotification } from "utils/generateNotification";
+import { transformRoute } from "utils/routing";
 
 import { IToggleFavoriteArgs } from "./types";
 import { POST } from "./constants";
@@ -37,7 +38,7 @@ export const useToggleFavorite = (): UseMutationResult<
     async (payload: IToggleFavoriteArgs) => {
       const { postId } = payload;
       const { data: newPost } = await instance.patch(
-        `${POST.TOGGLE_FAVORITE}${postId}`
+        transformRoute(POST.TOGGLE_FAVORITE, postId)
       );
 
       return newPost;

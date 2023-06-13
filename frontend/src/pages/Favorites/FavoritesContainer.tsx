@@ -1,12 +1,13 @@
 import { useGetFavoritesPosts } from "api/posts";
+import { getDataLength } from "utils/getDataLength";
 
 import Favorites from "./Favorites";
+
 
 const FavoritesContainer = () => {
   const { data, hasNextPage, fetchNextPage } = useGetFavoritesPosts();
 
-  const dataLength =
-    data?.pages.reduce((total, page) => total + page.length, 0) || 0;
+  const dataLength = getDataLength(data?.pages);
 
   return (
     <Favorites

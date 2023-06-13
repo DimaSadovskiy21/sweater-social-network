@@ -10,19 +10,19 @@ import { INITIAL_VALUES } from './constants';
 const ChangePasswordContainer = () => {
   const { token } = useParams();
 
-  const { isLoading, mutate: changePassword } = useChangePassword();
+  const { isLoading: isChangePasswordLoading, mutate: changePasswordMutate } = useChangePassword();
 
   const formik = useFormik({
     initialValues: INITIAL_VALUES,
     validationSchema,
     validateOnBlur: true,
     onSubmit: ({ password }, { resetForm }) => {
-      changePassword({ password, token });
+      changePasswordMutate({ password, token });
       resetForm({ values: INITIAL_VALUES });
     },
   });
 
-  return <ChangePassword formik={formik} isLoading={isLoading} />;
+  return <ChangePassword formik={formik} isLoading={isChangePasswordLoading} />;
 };
 
 export default ChangePasswordContainer;

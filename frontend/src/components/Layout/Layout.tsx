@@ -1,15 +1,16 @@
-import { Outlet } from "react-router-dom";
+import { FC } from "react";
 
 import { Header } from "./components/Header";
 import { UserInfo } from "./components/UserInfo";
+import { ILayoutProps } from "./types";
 import { Container, Main } from "./styles";
 
-const Layout = () => {
+const Layout: FC<ILayoutProps> = ({ children }) => {
   return (
     <Container>
       <Header />
       <Main>
-        <Outlet />
+        {children}
         <UserInfo />
       </Main>
     </Container>
