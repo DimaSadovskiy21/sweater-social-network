@@ -30,7 +30,6 @@ const App = () => {
         <Route path={ROUTES.HOME} element={<Navigate to={ROUTES.PROFILE} />} />
         <Route path={ROUTES.PROFILE} element={<Profile />} />
         <Route path={ROUTES.POSTS} element={<Posts />} />
-        <Route path={ROUTES.CHATS} element={<div>CHATS</div>} />
         <Route path={ROUTES.FAVORITES} element={<Favorites />} />
       </Route>
       <Route path={ROUTES.NOTFOUND} element={<Error />} />

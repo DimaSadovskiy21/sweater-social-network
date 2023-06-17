@@ -11,9 +11,6 @@ const Navbar = () => {
         profile
       </LinkStyled>
 
-      <LinkStyled to={ROUTES.CHATS} $isActive={pathname === ROUTES.CHATS}>
-        chats
-      </LinkStyled>
       <LinkStyled to={ROUTES.POSTS} $isActive={pathname === ROUTES.POSTS}>
         posts
       </LinkStyled>
