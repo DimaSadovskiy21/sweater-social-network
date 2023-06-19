@@ -20,6 +20,8 @@ async function bootstrap() {
     optionSuccessStatus: 200,
   };
 
+  console.log(corsOptions);
+
   app.enableCors(corsOptions);
 
   app.use('/uploads', express.static(join(__dirname, '..', 'uploads')));
