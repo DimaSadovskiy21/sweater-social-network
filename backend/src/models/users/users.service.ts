@@ -57,12 +57,16 @@ export class UsersService {
       maxAge: refreshExpire,
       httpOnly: true,
       domain: cookieDomain,
+      secure: true,
+      sameSite: 'none',
     });
 
     res.cookie('accessToken', authUserResponse.tokens.accessToken, {
       maxAge: accessExpire,
       httpOnly: true,
       domain: cookieDomain,
+      secure: true,
+      sameSite: 'none',
     });
   }
 
