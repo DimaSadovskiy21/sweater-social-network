@@ -1,7 +1,7 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { ConfigService } from '@nestjs/config';
-import { Model, Types } from 'mongoose';
+import { FilterQuery, Model, Types, UpdateQuery } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import { Response } from 'express';
 
@@ -31,6 +31,13 @@ export class UsersService {
 
   async findUserByEmail(email: string) {
     return await this.userModel.findOne({ email });
+  }
+
+  async findAndUpdateUser(
+    query: FilterQuery<UserDocument>,
+    payload: UpdateQuery<UserDocument>,
+  ) {
+    return await this.userModel.findOneAndUpdate(query, payload, { new: true });
   }
 
   async findUserById(id: Types.ObjectId) {

@@ -118,14 +118,18 @@ export class AuthService {
 
     const userLink = await this.actionTokenService.findToken(token);
 
-    const user = await this.usersService.findUserById(userLink.user);
+    const hashedPassword = await this.usersService.hashPassword(password);
+
+    const user = await this.usersService.findAndUpdateUser(
+      {
+        _id: userLink.user,
+      },
+      { password: hashedPassword },
+    );
 
     if (!user) {
       throw new BadRequestException(APP_ERROR.USER_NOT_FOUND);
     }
-    const hashedPassword = await this.usersService.hashPassword(password);
-    user.password = hashedPassword;
-    await user.save();
 
     await this.actionTokenService.deleteToken(token);
 
