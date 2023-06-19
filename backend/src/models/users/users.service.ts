@@ -50,15 +50,19 @@ export class UsersService {
 
   async setCookie(res: Response, authUserResponse) {
     const refreshExpire = this.configService.get('expire_jwt_refresh');
+    const accessExpire = this.configService.get('expire_jwt_access');
+    const cookieDomain = this.configService.get('client_url');
 
     res.cookie('refreshToken', authUserResponse.tokens.refreshToken, {
       maxAge: refreshExpire,
       httpOnly: true,
+      domain: cookieDomain,
     });
 
     res.cookie('accessToken', authUserResponse.tokens.accessToken, {
-      maxAge: refreshExpire,
+      maxAge: accessExpire,
       httpOnly: true,
+      domain: cookieDomain,
     });
   }
 
