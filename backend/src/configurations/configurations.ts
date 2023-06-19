@@ -10,6 +10,7 @@ const configurations = () => ({
   smtp_password: process.env.SMTP_PASSWORD,
   api_url: process.env.API_URL,
   client_url: process.env.CLIENT_URL,
+  cookie_url: process.env.COOKIE_URL,
 });
 
 export default configurations;
