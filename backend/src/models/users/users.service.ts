@@ -58,7 +58,7 @@ export class UsersService {
       httpOnly: true,
       domain: cookieDomain,
       secure: true,
-      sameSite: 'none',
+      sameSite: 'lax',
     });
 
     res.cookie('accessToken', authUserResponse.tokens.accessToken, {
@@ -66,7 +66,7 @@ export class UsersService {
       httpOnly: true,
       domain: cookieDomain,
       secure: true,
-      sameSite: 'none',
+      sameSite: 'lax',
     });
   }
 
