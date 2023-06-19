@@ -1,9 +1,11 @@
-import axios from 'axios';
+import axios from "axios";
 
-import { PATH } from './constants';
+import { env } from "configurations/env";
+
+import { PATH } from "./constants";
 
 export const instance = axios.create({
-  baseURL: PATH.BASE,
+  baseURL: env.REACT_APP_API_URL,
   withCredentials: true,
 });
 
@@ -12,12 +14,15 @@ instance.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    const refreshURL = `${PATH.BASE}${PATH.REFRESH}`;
+    const refreshURL = `${env.REACT_APP_API_URL}${PATH.REFRESH}`;
 
-    if (error.response.status === 401 && error.request.responseURL !== refreshURL) {
+    if (
+      error.response.status === 401 &&
+      error.request.responseURL !== refreshURL
+    ) {
       await instance.post(PATH.REFRESH);
       return instance.request(originalRequest);
     }
     throw error;
-  },
+  }
 );

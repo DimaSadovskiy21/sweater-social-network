@@ -1,5 +1,4 @@
 export const PATH = {
-  BASE: 'http://localhost:5000/',
   REFRESH: 'auth/refresh',
 };
 
