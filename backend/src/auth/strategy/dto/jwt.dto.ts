@@ -1,6 +1,6 @@
 import { IsNumber } from 'class-validator';
 
-import { UserDto } from 'common/dto';
+import { UserDto } from '../../../common/dto';
 
 export class JwtDto {
   user: UserDto;

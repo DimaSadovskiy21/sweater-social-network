@@ -5,7 +5,7 @@ import { ConfigService } from '@nestjs/config';
 import { Model } from 'mongoose';
 import * as fs from 'fs';
 
-import { UsersService } from 'models/users/users.service';
+import { UsersService } from '../../models/users/users.service';
 
 import { File, FileDocument } from './schemas';
 

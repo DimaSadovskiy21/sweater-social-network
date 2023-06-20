@@ -11,11 +11,11 @@ import { ConfigService } from '@nestjs/config';
 import { Response } from 'express';
 import { Types } from 'mongoose';
 
-import { AccessJwtAuthGuard, RefreshJwtAuthGuard } from 'common/guards';
-import { ROUTES, SUBROUTES } from 'common/constants';
-import { GetUserId } from 'common/decorators';
-import { generateResponseError } from 'common/utils';
-import { UsersService } from 'models/users/users.service';
+import { AccessJwtAuthGuard, RefreshJwtAuthGuard } from '../../common/guards';
+import { ROUTES, SUBROUTES } from '../../common/constants';
+import { GetUserId } from '../../common/decorators';
+import { generateResponseError } from '../../common/utils';
+import { UsersService } from '../../models/users/users.service';
 
 import { ChangeStatusDto } from './dto';
 

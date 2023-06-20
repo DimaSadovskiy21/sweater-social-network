@@ -10,10 +10,10 @@ import {
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Types } from 'mongoose';
 
-import { AccessJwtAuthGuard, RefreshJwtAuthGuard } from 'common/guards';
-import { ROUTES } from 'common/constants';
-import { GetUserId } from 'common/decorators';
-import { generateResponseError } from 'common/utils';
+import { AccessJwtAuthGuard, RefreshJwtAuthGuard } from '../../common/guards';
+import { ROUTES } from '../../common/constants';
+import { GetUserId } from '../../common/decorators';
+import { generateResponseError } from '../../common/utils';
 
 import { fileStorage } from './storage';
 import { FilesService } from './files.service';
