@@ -10,11 +10,11 @@ import {
 } from '@nestjs/common';
 import { Types } from 'mongoose';
 
-import { AccessJwtAuthGuard, RefreshJwtAuthGuard } from '../../common/guards';
-import { ROUTES, SUBROUTES } from '../../common/constants';
-import { GetPostsQuery, GetUserId } from '../../common/decorators';
-import { PostsDto } from '../../common/dto';
-import { generateResponseError } from '../../common/utils';
+import { AccessJwtAuthGuard, RefreshJwtAuthGuard } from 'common/guards';
+import { ROUTES, SUBROUTES } from 'common/constants';
+import { GetPostsQuery, GetUserId } from 'common/decorators';
+import { PostsDto } from 'common/dto';
+import { generateResponseError } from 'common/utils';
 
 import { PostDto } from './dto';
 import { PostsService } from './posts.service';

@@ -5,12 +5,12 @@ import { FilterQuery, Model, Types, UpdateQuery } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import { Response } from 'express';
 
-import { ROUTES, SUBROUTES, MAIL } from '../../common/constants';
-import { APP_ERROR } from '../../common/errors';
-import { CreateUserDto, UserDto } from '../../common/dto';
-import { SessionTokenService } from '../../models/sessionToken/sessionToken.service';
-import { ActionTokenService } from '../../models/actionToken/actionToken.service';
-import { MailService } from '../../providers/mail/mail.service';
+import { ROUTES, SUBROUTES, MAIL } from 'common/constants';
+import { APP_ERROR } from 'common/errors';
+import { CreateUserDto, UserDto } from 'common/dto';
+import { SessionTokenService } from 'models/sessionToken/sessionToken.service';
+import { ActionTokenService } from 'models/actionToken/actionToken.service';
+import { MailService } from 'providers/mail/mail.service';
 
 import { User, UserDocument } from './schemas';
 import { SetFavoritesUserDto, ChangeStatusDto } from './dto';

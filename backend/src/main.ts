@@ -5,7 +5,7 @@ import * as cookieParser from 'cookie-parser';
 import * as express from 'express';
 import { join } from 'path';
 
-import { AppModule } from './app.module';
+import { AppModule } from 'app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -22,7 +22,7 @@ async function bootstrap() {
 
   app.enableCors(corsOptions);
 
-  app.use('/uploads', express.static(join(__dirname, '..', 'uploads')));
+  app.use('./uploads', express.static(join(__dirname, '..', 'uploads')));
 
   app.use(cookieParser());
 

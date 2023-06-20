@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
-import { SessionTokenModule } from '../../models/sessionToken/sessionToken.module';
-import { ActionTokenModule } from '../../models/actionToken/actionToken.module';
-import { MailModule } from '../../providers/mail/mail.module';
+import { SessionTokenModule } from 'models/sessionToken/sessionToken.module';
+import { ActionTokenModule } from 'models/actionToken/actionToken.module';
+import { MailModule } from 'providers/mail/mail.module';
 
 import { UsersService } from './users.service';
 import { User, UserSchema } from './schemas/user.schema';
