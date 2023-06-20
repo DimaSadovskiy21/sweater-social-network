@@ -6,7 +6,7 @@ export const UserInfoWrapper = styled('div')({
   alignItems: 'center',
   maxWidth: '300px',
   width: "100%",
-  height: '100%',
+  height: 'fit-content',
   gap: '20px',
   padding: '20px',
   border: '2px solid var(--gray)',

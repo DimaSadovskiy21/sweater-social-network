@@ -6,10 +6,12 @@ export const Container = styled("div")({
   flexDirection: "column",
   maxWidth: "1360px",
   width: "100%",
+  height: "100%",
   gap: "5px"
 });
 
 export const Main = styled("main")({
   display: "flex",
   gap: "5px",
+  flexGrow: 1,
 })
