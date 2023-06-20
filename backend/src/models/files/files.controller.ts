@@ -11,7 +11,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { Types } from 'mongoose';
 
 import { AccessJwtAuthGuard, RefreshJwtAuthGuard } from 'common/guards';
-import { ROUTES } from 'common/constants';
+import { ROUTES } from 'constant';
 import { GetUserId } from 'common/decorators';
 import { generateResponseError } from 'common/utils';
 

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
-import { ROUTES } from "common/constants";
+import { ROUTES } from "constant";
 import { Loader } from "components/Loaders/Loader";
 
 import { IPublicRoutesProps } from "./types";
@@ -12,11 +12,7 @@ const PublicRoutes: FC<IPublicRoutesProps> = ({ status }) => {
 
   return (
     <PublicWrapper>
-      {status === "loading" ? (
-      <Loader />
-      ) : (
-      <Outlet />
-      )}
+      {status === "loading" ? <Loader /> : <Outlet />}
     </PublicWrapper>
   );
 };

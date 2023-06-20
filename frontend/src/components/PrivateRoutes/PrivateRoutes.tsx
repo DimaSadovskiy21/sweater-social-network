@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
-import { ROUTES } from "common/constants";
+import { ROUTES } from "constant";
 import { Loader } from "components/Loaders/Loader";
 import { Layout } from "components/Layout";
 

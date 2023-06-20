@@ -7,8 +7,8 @@ import { ConfigService } from '@nestjs/config';
 import * as bcrypt from 'bcrypt';
 import { Types } from 'mongoose';
 
-import { MAIL, ROUTES, SUBROUTES } from 'common/constants';
-import { APP_ERROR } from 'common/errors';
+import { MAIL, ROUTES, SUBROUTES } from 'constant';
+import { APP_ERROR } from 'constant';
 import { CreateUserDto } from 'common/dto';
 import { UsersService } from 'models/users/users.service';
 import { SessionTokenService } from 'models/sessionToken/sessionToken.service';
@@ -16,8 +16,8 @@ import { ActionTokenService } from 'models/actionToken/actionToken.service';
 import { MailService } from 'providers/mail/mail.service';
 
 import { LoginUserDto, ChangePasswordDto } from './dto';
-import { MESSAGES } from './common/constants';
-import { ERROR } from './common/errors';
+import { MESSAGES } from './constant';
+import { ERROR } from './constant';
 
 @Injectable()
 export class AuthService {

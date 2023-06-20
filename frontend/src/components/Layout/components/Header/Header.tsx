@@ -1,6 +1,6 @@
 import { useLogout } from "api/auth";
 
-import { ROUTES } from "common/constants";
+import { ROUTES } from "constant";
 import { Navbar } from "components/Navbar";
 import { Logo, Logout } from "assets/vectors";
 

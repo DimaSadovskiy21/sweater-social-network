@@ -5,7 +5,7 @@ import { IPagesProps } from "types/pages";
 import { FormLayout } from "components/FormLayout";
 import { Input } from "components/Input";
 import { Button } from "components/Button";
-import { ROUTES } from "common/constants";
+import { ROUTES } from "constant";
 
 import { IRegisterValues } from "./types";
 import { SignIn } from "./styles";

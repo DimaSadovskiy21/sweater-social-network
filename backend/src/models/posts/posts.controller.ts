@@ -11,7 +11,7 @@ import {
 import { Types } from 'mongoose';
 
 import { AccessJwtAuthGuard, RefreshJwtAuthGuard } from 'common/guards';
-import { ROUTES, SUBROUTES } from 'common/constants';
+import { ROUTES, SUBROUTES } from 'constant';
 import { GetPostsQuery, GetUserId } from 'common/decorators';
 import { PostsDto } from 'common/dto';
 import { generateResponseError } from 'common/utils';

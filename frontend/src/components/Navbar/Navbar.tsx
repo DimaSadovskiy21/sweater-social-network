@@ -1,6 +1,9 @@
 import { useLocation } from "react-router-dom";
+
+import { ROUTES } from "constant";
+
 import { LinkStyled, NavbarWrapper } from "./styles";
-import { ROUTES } from "common/constants";
+
 
 const Navbar = () => {
   const { pathname } = useLocation();

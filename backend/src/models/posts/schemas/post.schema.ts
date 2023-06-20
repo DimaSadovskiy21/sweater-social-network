@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, SchemaTypes, Types } from 'mongoose';
 
-import { SCHEMAS } from 'common/constants';
+import { SCHEMAS } from 'constant';
 
 export type PostDocument = Post & Document;
 

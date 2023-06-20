@@ -12,8 +12,9 @@ import {
   Register,
   Error,
 } from "pages";
+import { ROUTES } from "constant";
 import { useGetUserProfile } from "api/auth";
-import { ROUTES } from "common/constants";
+
 
 const App = () => {
   const { status } = useGetUserProfile();
