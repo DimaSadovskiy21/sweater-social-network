@@ -2,7 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Types } from 'mongoose';
 
-import { APP_ERROR } from 'constant';
+import { APP_ERROR } from 'common/errors';
 import { PostsDto } from 'common/dto';
 import { UsersService } from 'models/users/users.service';
 

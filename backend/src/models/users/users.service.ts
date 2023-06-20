@@ -5,8 +5,8 @@ import { FilterQuery, Model, Types, UpdateQuery } from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import { Response } from 'express';
 
-import { ROUTES, SUBROUTES, MAIL } from 'constant';
-import { APP_ERROR } from 'constant';
+import { APP_ERROR } from 'common/errors';
+import { MAIL, ROUTES, SUBROUTES } from 'common/constants';
 import { CreateUserDto, UserDto } from 'common/dto';
 import { SessionTokenService } from 'models/sessionToken/sessionToken.service';
 import { ActionTokenService } from 'models/actionToken/actionToken.service';

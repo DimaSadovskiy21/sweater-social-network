@@ -1,6 +1,6 @@
 import { BadRequestException, HttpException } from '@nestjs/common';
 
-import { APP_ERROR } from 'constant';
+import { APP_ERROR } from 'common/errors';
 
 export const generateResponseError = (
   error: unknown,
