@@ -22,7 +22,7 @@ export const useCreatePost = (): UseMutationResult<
   const queryClient = useQueryClient();
 
   const handleSuccessResponse = () => {
-    queryClient.invalidateQueries( [QUERY_KEYS.POSTS]);
+    queryClient.invalidateQueries([QUERY_KEYS.POSTS]);
   };
 
   const handleErrorResponse = (error: TAxiosRequestError) => {

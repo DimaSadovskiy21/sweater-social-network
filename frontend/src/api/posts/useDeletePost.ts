@@ -23,9 +23,8 @@ export const useDeletePost = (): UseMutationResult<
   const queryClient = useQueryClient();
 
   const handleSuccessResponse = () => {
-    return queryClient.invalidateQueries({
-      queryKey: [QUERY_KEYS.POSTS],
-    });
+    queryClient.invalidateQueries([QUERY_KEYS.POSTS]);
+    queryClient.invalidateQueries([QUERY_KEYS.FAVORITES_POSTS]);
   };
 
   const handleErrorResponse = (error: TAxiosRequestError) => {

@@ -14,7 +14,7 @@ export const useGetPosts = (
   userId?: string
 ): UseInfiniteQueryResult<IPostResponse[], TAxiosRequestError> =>
   useInfiniteQuery(
-    [QUERY_KEYS.POSTS],
+    [QUERY_KEYS.POSTS, { userId }],
     async ({ pageParam = 1 }) => {
       const postsResponse = await instance.get(POST.POSTS, {
         params: { page: pageParam, userId },
