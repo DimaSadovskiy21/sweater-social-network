@@ -4,10 +4,10 @@ import { ICustomToggleFavoritesStyledProps } from "./types";
 
 export const CustomToggleFavorites = styled(
   "button"
-)<ICustomToggleFavoritesStyledProps>(({ $checkFavoritedBy }) => ({
+)<ICustomToggleFavoritesStyledProps>(({ $checkFavoritedBy, $isLoading }) => ({
   padding: "0 20px 0 10px",
   borderRadius: "5px",
-  backgroundColor: "transparent",
+  backgroundColor: $isLoading ? "var(--dark-blue)" : "transparent",
   color: "var(--white)",
   fontSize: "var(--medium-font)",
   border: "none",

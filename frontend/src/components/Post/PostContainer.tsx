@@ -1,10 +1,12 @@
 import { ChangeEvent, FC, useState } from "react";
 
+import { trimAllExtraSpaces } from "utils";
 import { useUserProfileCache } from "hooks";
 import { useDeletePost, useUpdatePost } from "api/posts";
 
 import { IPostContainerProps } from "./types";
 import Post from "./Post";
+
 
 const PostContainer: FC<IPostContainerProps> = ({
   _id,
@@ -31,7 +33,10 @@ const PostContainer: FC<IPostContainerProps> = ({
   };
 
   const handleBlurSaveContent = () => {
-    const contentLocalTrim = contentLocal.trim();
+    const contentLocalTrim = trimAllExtraSpaces(contentLocal);
+    
+    setContentLocal(contentLocalTrim);
+
     content !== contentLocalTrim &&
       updatePostMutate({ postId: _id, content: contentLocalTrim });
     setEditContent(false);

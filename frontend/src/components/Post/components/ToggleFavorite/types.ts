@@ -12,4 +12,5 @@ export interface IToggleFavoriteProps {
 
 export interface ICustomToggleFavoritesStyledProps {
   $checkFavoritedBy: boolean;
+  $isLoading: boolean;
 }

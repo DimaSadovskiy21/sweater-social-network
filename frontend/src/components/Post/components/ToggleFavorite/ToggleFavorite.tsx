@@ -12,6 +12,7 @@ const ToggleFavorite: FC<IToggleFavoriteProps> = ({
   return (
     <CustomToggleFavorites
       $checkFavoritedBy={checkFavoritedBy}
+      $isLoading={isLoading}
       onClick={handleClickToggleFavorite}
       disabled={isLoading}
     >

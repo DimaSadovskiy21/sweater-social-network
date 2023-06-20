@@ -4,10 +4,9 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 
+import { transformRoute, generateNotification } from "utils";
 import { TAxiosRequestError } from "types/error";
 import { IPostResponse } from "types/post";
-import { generateNotification } from "utils/generateNotification";
-import { transformRoute } from "utils/routing";
 
 import { IToggleFavoriteArgs } from "./types";
 import { POST } from "./constants";
@@ -23,8 +22,8 @@ export const useToggleFavorite = (): UseMutationResult<
   const queryClient = useQueryClient();
 
   const handleSuccessResponse = () => {
-   queryClient.invalidateQueries([QUERY_KEYS.POSTS]);
-   queryClient.invalidateQueries([QUERY_KEYS.FAVORITES_POSTS]);
+    queryClient.invalidateQueries([QUERY_KEYS.POSTS]);
+    queryClient.invalidateQueries([QUERY_KEYS.FAVORITES_POSTS]);
   };
 
   const handleErrorResponse = (error: TAxiosRequestError) => {

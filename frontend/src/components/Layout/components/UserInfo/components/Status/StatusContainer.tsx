@@ -3,9 +3,11 @@ import { ChangeEvent, useState } from "react";
 import { useUserProfileCache } from "hooks";
 import { useChangeStatus } from "api/user";
 import { generateNotification } from "utils/generateNotification";
+import { trimAllExtraSpaces } from "utils";
 
 import Status from "./Status";
 import { MESSAGES } from "../constants";
+;
 
 const StatusContainer = () => {
   const { isLoading, mutate: changeStatus } = useChangeStatus();
@@ -26,9 +28,11 @@ const StatusContainer = () => {
   };
 
   const handleBlurSaveStatus = () => {
+    const statusLocalTrim = statusLocal && trimAllExtraSpaces(statusLocal);
+    setStatusLocal(statusLocalTrim);
     statusLocal !== undefined &&
-      statusLocal.trim() !== status &&
-      changeStatus({ status: statusLocal.trim() });
+      statusLocalTrim !== status &&
+      statusLocalTrim && changeStatus({ status: statusLocalTrim });
     setEditStatus(false);
   };
 

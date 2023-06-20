@@ -4,10 +4,10 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 
+import { transformRoute, generateNotification } from "utils";
 import { TAxiosRequestError } from "types/error";
 import { IPostResponse } from "types/post";
-import { generateNotification } from "utils/generateNotification";
-import { transformRoute } from "utils/routing";
+
 
 import { IDeletePostArgs } from "./types";
 import { POST } from "./constants";

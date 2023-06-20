@@ -1,1 +1,0 @@
-export { transformRoute } from "./transformRouting";
