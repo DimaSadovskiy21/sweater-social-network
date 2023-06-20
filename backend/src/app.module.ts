@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
-import { configurations } from 'configurations';
+import { configurations } from './configurations';
 import { AuthModule } from 'auth/auth.module';
 import { UsersModule } from 'models/users/users.module';
 import { PostsModule } from 'models/posts/posts.module';
