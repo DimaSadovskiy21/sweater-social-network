@@ -5,4 +5,5 @@ export const PATH = {
 export const QUERY_KEYS = {
   USER_PROFILE: 'userProfile',
   POSTS: 'posts',
+  FAVORITES_POSTS: 'favorites',
 };

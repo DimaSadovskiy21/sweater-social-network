@@ -9,9 +9,14 @@ export interface IPostProps
   username: string;
   editContent: boolean;
   isOwner: boolean;
+  isLoading: boolean;
   contentLocal: string;
   handleClickEditStatus: () => void;
   handleClickDeletePost: () => void;
   handleChangeContent: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   handleBlurSaveContent: () => void;
+}
+
+export interface IPostWrapperProps {
+  isLoading: boolean;
 }

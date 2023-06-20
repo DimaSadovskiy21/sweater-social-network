@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 export const Container = styled("div")({
+  margin: '0 auto',
   display: "flex",
   flexDirection: "column",
-  width: "1360px",
-  minHeight: "90vh",
+  maxWidth: "1360px",
+  width: "100%",
   gap: "5px"
 });
 

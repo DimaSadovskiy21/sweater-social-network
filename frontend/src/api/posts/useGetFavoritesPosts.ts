@@ -15,7 +15,7 @@ export const useGetFavoritesPosts = (): UseInfiniteQueryResult<
   TAxiosRequestError
 > =>
   useInfiniteQuery(
-    [QUERY_KEYS.POSTS],
+    [QUERY_KEYS.FAVORITES_POSTS],
     async ({ pageParam = 1 }) =>
       await instance
         .get(POST.FAVORITES_POSTS, { params: { page: pageParam } })

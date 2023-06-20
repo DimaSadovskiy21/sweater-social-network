@@ -10,6 +10,7 @@ import { TAxiosRequestError } from "types/error";
 export interface IProfileProps<T> {
   formik: Pick<FormikProps<T>, "values" | "handleSubmit" | "handleChange">;
   posts?: IPostResponse[][];
+  checkPosts?: number;
   dataLength: number;
   isLoading: boolean;
   hasNextPage?: boolean;

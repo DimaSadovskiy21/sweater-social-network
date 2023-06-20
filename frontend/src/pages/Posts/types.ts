@@ -10,6 +10,7 @@ export interface IPostsProps {
   posts?: IPostResponse[][];
   dataLength: number;
   hasNextPage?: boolean;
+  checkPosts?: number;
   fetchNextPage: (
     options?: FetchNextPageOptions | undefined
   ) => Promise<

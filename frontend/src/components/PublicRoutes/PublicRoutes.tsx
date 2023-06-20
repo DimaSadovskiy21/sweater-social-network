@@ -5,11 +5,20 @@ import { ROUTES } from "common/constants";
 import { Loader } from "components/Loaders/Loader";
 
 import { IPublicRoutesProps } from "./types";
+import { PublicWrapper } from "./styles";
 
 const PublicRoutes: FC<IPublicRoutesProps> = ({ status }) => {
   if (status === "success") return <Navigate to={ROUTES.HOME} />;
 
-  return status === "loading" ? <Loader /> : <Outlet />;
+  return (
+    <PublicWrapper>
+      {status === "loading" ? (
+      <Loader />
+      ) : (
+      <Outlet />
+      )}
+    </PublicWrapper>
+  );
 };
 
 export default PublicRoutes;

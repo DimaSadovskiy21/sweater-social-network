@@ -17,6 +17,7 @@ const Post: FC<IPostProps> = ({
   favoritedBy,
   username,
   isOwner,
+  isLoading,
   editContent,
   contentLocal,
   handleClickEditStatus,
@@ -25,7 +26,7 @@ const Post: FC<IPostProps> = ({
   handleBlurSaveContent,
 }) => {
   return (
-    <PostWrapper>
+    <PostWrapper isLoading={isLoading}>
       {isOwner && (
         <ButtonsWrapper>
           <EditPostStyled onClick={handleClickEditStatus} />
@@ -37,6 +38,7 @@ const Post: FC<IPostProps> = ({
           value={contentLocal}
           onChange={handleChangeContent}
           onBlur={handleBlurSaveContent}
+          autoFocus
         />
       ) : (
         <p>{content}</p>

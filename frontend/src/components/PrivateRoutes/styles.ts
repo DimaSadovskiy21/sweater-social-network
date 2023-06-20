@@ -6,9 +6,15 @@ export const PageWrapper = styled("div")({
   flexDirection: "column",
   alignItems: "center",
   width: "100%",
-  minHeight: "80vh",
   padding: "20px",
   background: "var(--white)",
   border: "2px solid var(--gray)",
   borderRadius: "5px",
+});
+
+export const Wrapper = styled("div")({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  minHeight: "100vh",
 });

@@ -4,6 +4,7 @@ import { useUserProfileCache } from "hooks";
 
 import { useCreatePost, useGetPosts } from "api/posts";
 import { getDataLength } from "utils/getDataLength";
+import { Preloader } from "components/Loaders/Preloader";
 
 import { INITIAL_VALUES } from "./constants";
 import Profile from "./Profile";
@@ -13,29 +14,36 @@ const ProfileContainer = () => {
 
   const userId = userProfile?._id;
 
-  const { data, hasNextPage, fetchNextPage } = useGetPosts(userId);
+  const { data, hasNextPage, fetchNextPage, isFetchedAfterMount } =
+    useGetPosts(userId);
 
-  const { isLoading, mutate: createPost } = useCreatePost();
+  const { isLoading: isCreatePostLoading, mutate: createPostMutate } =
+    useCreatePost();
 
   const formik = useFormik({
     initialValues: INITIAL_VALUES,
     onSubmit: (values, { resetForm }) => {
-      createPost(values);
-      resetForm({ values: INITIAL_VALUES });
+      createPostMutate(values);
+      resetForm();
     },
   });
 
   const dataLength = getDataLength(data?.pages);
 
-  return (
+  const checkPosts = data?.pages?.[0].length;
+
+  return isFetchedAfterMount ? (
     <Profile
       formik={formik}
       posts={data?.pages}
+      checkPosts={checkPosts}
       dataLength={dataLength}
-      isLoading={isLoading}
+      isLoading={isCreatePostLoading}
       hasNextPage={hasNextPage}
       fetchNextPage={fetchNextPage}
     />
+  ) : (
+    <Preloader />
   );
 };
 

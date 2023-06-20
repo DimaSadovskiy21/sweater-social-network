@@ -26,7 +26,9 @@ const StatusContainer = () => {
   };
 
   const handleBlurSaveStatus = () => {
-    statusLocal !== undefined && changeStatus({ status: statusLocal.trim() });
+    statusLocal !== undefined &&
+      statusLocal.trim() !== status &&
+      changeStatus({ status: statusLocal.trim() });
     setEditStatus(false);
   };
 

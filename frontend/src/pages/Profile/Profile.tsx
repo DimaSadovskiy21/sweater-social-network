@@ -4,13 +4,16 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { Button } from "components/Button";
 import { Post } from "components/Post";
 import { Preloader } from "components/Loaders/Preloader";
+import { Message } from "components/Message";
 
 import { IAddPostValues, IProfileProps } from "./types";
 import { AddPostField, AddPostForm, PostsWrapper } from "./styles";
+import { MESSAGES } from "./constants";
 
 const Profile: FC<IProfileProps<IAddPostValues>> = ({
   formik,
   posts,
+  checkPosts,
   dataLength,
   isLoading,
   hasNextPage = false,
@@ -43,8 +46,17 @@ const Profile: FC<IProfileProps<IAddPostValues>> = ({
           loader={<Preloader />}
           dataLength={dataLength}
         >
-          {posts?.map((page) =>
-            page.map((post) => <Post key={post._id} {...post} />)
+          {checkPosts ? (
+            posts?.map((page) =>
+              page.map((post) => (
+                <Post
+                  key={post._id}
+                  {...post}
+                />
+              ))
+            )
+          ) : (
+            <Message message={MESSAGES.NO_POSTS} />
           )}
         </InfiniteScroll>
       </PostsWrapper>

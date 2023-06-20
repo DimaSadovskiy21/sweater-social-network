@@ -12,9 +12,8 @@ const RegisterContainer = () => {
     initialValues: INITIAL_VALUES,
     validationSchema,
     validateOnBlur: true,
-    onSubmit: (values, { resetForm }) => {
+    onSubmit: (values) => {
       registerMutate(values);
-      resetForm({ values: INITIAL_VALUES });
     },
   });
 

@@ -4,6 +4,7 @@ import styled from "styled-components";
 export const HeaderWrapper = styled("header")({
   display: "flex",
   justifyContent: "space-between",
+  gap: "15px",
   padding: "20px",
   border: "2px solid var(--gray)",
   borderRadius: "5px",

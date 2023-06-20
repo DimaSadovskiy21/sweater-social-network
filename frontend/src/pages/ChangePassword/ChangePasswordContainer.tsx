@@ -16,9 +16,8 @@ const ChangePasswordContainer = () => {
     initialValues: INITIAL_VALUES,
     validationSchema,
     validateOnBlur: true,
-    onSubmit: ({ password }, { resetForm }) => {
+    onSubmit: ({ password }) => {
       changePasswordMutate({ password, token });
-      resetForm({ values: INITIAL_VALUES });
     },
   });
 

@@ -2,15 +2,18 @@ import { FC } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import { Post } from "components/Post";
+import { Message } from "components/Message";
 import { Preloader } from "components/Loaders/Preloader";
 
 import { IPostsProps } from "./types";
 import { PostsWrapper } from "./styles";
+import { MESSAGES } from "./constants";
 
 const Favorites: FC<IPostsProps> = ({
   posts,
   dataLength,
   hasNextPage = false,
+  checkPosts,
   fetchNextPage,
 }) => (
   <PostsWrapper>
@@ -20,8 +23,17 @@ const Favorites: FC<IPostsProps> = ({
       loader={<Preloader />}
       dataLength={dataLength}
     >
-      {posts?.map((page) =>
-        page.map((post) => <Post key={post._id} {...post} />)
+      {checkPosts ? (
+        posts?.map((page) =>
+          page.map((post) => (
+            <Post
+              key={post._id}
+              {...post}
+            />
+          ))
+        )
+      ) : (
+        <Message message={MESSAGES.NO_POSTS} />
       )}
     </InfiniteScroll>
   </PostsWrapper>

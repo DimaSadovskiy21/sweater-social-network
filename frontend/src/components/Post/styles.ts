@@ -2,16 +2,22 @@ import styled from "styled-components";
 
 import { Delete, Edit } from "assets/vectors";
 
-export const PostWrapper = styled("div")({
-  display: "flex",
-  flexDirection: "column",
-  gap: "30px",
-  background: "var(--blue)",
-  borderRadius: "5px",
-  color: "var(--white)",
-  marginBottom: "20px",
-  padding: "10px",
-});
+import { IPostWrapperProps } from "./types";
+
+export const PostWrapper = styled("div")<IPostWrapperProps>(
+  ({ isLoading }) => ({
+    display: "flex",
+    flexDirection: "column",
+    gap: "30px",
+    width: "100%",
+    background: isLoading ? "var(--dark-blue)" : "var(--blue)",
+    borderRadius: "5px",
+    color: "var(--white)",
+    marginBottom: "20px",
+    padding: "10px",
+    pointerEvents: isLoading ? "none" : "auto",
+  })
+);
 
 export const ButtonsWrapper = styled("div")({
   display: "flex",

@@ -55,11 +55,15 @@ export class UsersService {
     res.cookie('refreshToken', authUserResponse.tokens.refreshToken, {
       maxAge: refreshExpire,
       httpOnly: true,
+      secure: true,
+      sameSite: 'none',
     });
 
     res.cookie('accessToken', authUserResponse.tokens.accessToken, {
       maxAge: accessExpire,
       httpOnly: true,
+      secure: true,
+      sameSite: 'none',
     });
   }
 

@@ -13,9 +13,8 @@ const ForgotPasswordContainer = () => {
     initialValues: INITIAL_VALUES,
     validationSchema,
     validateOnBlur: true,
-    onSubmit: (values, { resetForm }) => {
+    onSubmit: (values) => {
       forgotPasswordMutate(values);
-      resetForm({ values: INITIAL_VALUES });
     },
   });
 

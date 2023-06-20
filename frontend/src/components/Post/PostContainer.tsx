@@ -12,15 +12,17 @@ const PostContainer: FC<IPostContainerProps> = ({
   favoritedBy,
   author,
 }) => {
-  const { mutate: updatePost } = useUpdatePost();
+  const { isLoading: isUpdatePostLoading, mutate: updatePostMutate } =
+    useUpdatePost();
 
-  const { mutate: deletePost } = useDeletePost();
+  const { isLoading: isDeletePostLoading, mutate: deletePostMutate } =
+    useDeletePost();
 
   const [editContent, setEditContent] = useState(false);
 
   const [contentLocal, setContentLocal] = useState(content);
 
-  const handleClickDeletePost = () => deletePost({ postId: _id });
+  const handleClickDeletePost = () => deletePostMutate({ postId: _id });
 
   const handleClickEditStatus = () => setEditContent(true);
 
@@ -29,7 +31,9 @@ const PostContainer: FC<IPostContainerProps> = ({
   };
 
   const handleBlurSaveContent = () => {
-    updatePost({ postId: _id, content: contentLocal.trim() });
+    const contentLocalTrim = contentLocal.trim();
+    content !== contentLocalTrim &&
+      updatePostMutate({ postId: _id, content: contentLocalTrim });
     setEditContent(false);
   };
 
@@ -41,6 +45,8 @@ const PostContainer: FC<IPostContainerProps> = ({
 
   const isOwner = userId === authorId;
 
+  const isLoading = isUpdatePostLoading || isDeletePostLoading;
+
   return (
     <Post
       _id={_id}
@@ -48,12 +54,14 @@ const PostContainer: FC<IPostContainerProps> = ({
       favoritedBy={favoritedBy}
       username={username}
       isOwner={isOwner}
+      isLoading={isLoading}
       editContent={editContent}
       contentLocal={contentLocal}
       handleClickEditStatus={handleClickEditStatus}
       handleClickDeletePost={handleClickDeletePost}
       handleChangeContent={handleChangeContent}
-      handleBlurSaveContent={handleBlurSaveContent}     />
+      handleBlurSaveContent={handleBlurSaveContent}
+    />
   );
 };
 

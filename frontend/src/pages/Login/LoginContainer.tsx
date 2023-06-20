@@ -13,9 +13,8 @@ export const LoginContainer = () => {
     initialValues: INITIAL_VALUES,
     validationSchema,
     validateOnBlur: true,
-    onSubmit: (values, { resetForm }) => {
+    onSubmit: (values) => {
       loginMutate(values);
-      resetForm({ values: INITIAL_VALUES });
     },
   });
 

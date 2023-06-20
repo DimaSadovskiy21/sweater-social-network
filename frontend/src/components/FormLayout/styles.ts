@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
-export const FormWrapper = styled('form')({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '10px',
-  minWidth: '350px',
-  width: '100%',
-  padding: '20px',
-  borderRadius: '10px',
-  backgroundColor: 'var(--white)',
+export const FormWrapper = styled("form")({
+  display: "flex",
+  flexDirection: "column",
+  gap: "10px",
+  maxWidth: "360px",
+  width: "100%",
+  padding: "20px",
+  borderRadius: "10px",
+  backgroundColor: "var(--white)",
 });
 
 export const LogoWrapper = styled('div')({
