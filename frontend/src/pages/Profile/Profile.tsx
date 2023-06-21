@@ -1,65 +1,43 @@
 import { FC } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
 
 import { Button } from "components/Button";
-import { Post } from "components/Post";
-import { Preloader } from "components/Loaders/Preloader";
-import { Message } from "components/Message";
+import { PostsList } from "components/PostsList";
 
-import { IAddPostValues, IProfileProps } from "./types";
-import { AddPostField, AddPostForm, PostsWrapper } from "./styles";
 import { MESSAGES } from "./constants";
+import { AddPostField, AddPostForm } from "./styles";
+import { IAddPostValues, IProfileProps } from "./types";
 
 const Profile: FC<IProfileProps<IAddPostValues>> = ({
   formik,
-  posts,
-  checkPosts,
-  dataLength,
-  isLoading,
-  hasNextPage = false,
-  fetchNextPage,
+  isCreatePostLoading,
+  isPostsFetching,
+  ...postsListProps
 }) => {
-  const { values, handleSubmit, handleChange } = formik;
+  const { values, handleSubmit, getFieldProps } = formik;
+
+  const isAddPostDisabled = isPostsFetching || isCreatePostLoading;
 
   return (
     <>
       <AddPostForm onSubmit={handleSubmit}>
         <AddPostField
-          name="content"
-          value={values.content}
-          onChange={handleChange}
-          placeholder="enter the content..."
-          disabled={isLoading}
+          placeholder="Enter the content..."
+          disabled={isAddPostDisabled}
+          {...getFieldProps("content")}
         />
         <Button
           type="submit"
-          isLoading={isLoading}
-          disabled={isLoading || !values.content.trim()}
+          isLoading={isAddPostDisabled}
+          disabled={isAddPostDisabled || !values.content.trim()}
         >
           Add Post
         </Button>
       </AddPostForm>
-      <PostsWrapper>
-        <InfiniteScroll
-          next={fetchNextPage}
-          hasMore={hasNextPage}
-          loader={<Preloader />}
-          dataLength={dataLength}
-        >
-          {checkPosts ? (
-            posts?.map((page) =>
-              page.map((post) => (
-                <Post
-                  key={post._id}
-                  {...post}
-                />
-              ))
-            )
-          ) : (
-            <Message message={MESSAGES.NO_POSTS} />
-          )}
-        </InfiniteScroll>
-      </PostsWrapper>
+      <PostsList
+        noPostsMessage={MESSAGES.NO_POSTS}
+        isPostsFetching={isPostsFetching}
+        {...postsListProps}
+      />
     </>
   );
 };

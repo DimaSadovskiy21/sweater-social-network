@@ -16,7 +16,6 @@ const ToggleFavorite: FC<IToggleFavoriteProps> = ({
       onClick={handleClickToggleFavorite}
       disabled={isLoading}
     >
-      {" "}
       <span>{likesCount}</span>
     </CustomToggleFavorites>
   );

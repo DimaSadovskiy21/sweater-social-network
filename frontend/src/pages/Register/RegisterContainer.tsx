@@ -1,9 +1,10 @@
-import { useFormik } from 'formik';
+import { useFormik } from "formik";
 
-import Register from './Register';
-import { validationSchema } from './validation';
-import { INITIAL_VALUES } from './constants';
-import { useRegister } from 'api/auth';
+import { useRegister } from "api/auth";
+
+import { INITIAL_VALUES } from "./constants";
+import Register from "./Register";
+import { validationSchema } from "./validation";
 
 const RegisterContainer = () => {
   const { isLoading: isRegisterLoading, mutate: registerMutate } = useRegister();

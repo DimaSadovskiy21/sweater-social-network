@@ -40,11 +40,11 @@ const Login: FC<IPagesProps<ILoginValues>> = ({ formik, isLoading }) => {
 
       <Links>
         <p>
-          Don't you have an account?{" "}
+          Don't you have an account?&nbsp;
           <Link to={ROUTES.REGISTER}>Click here!</Link>
         </p>
         <p>
-          Forgot your password?{" "}
+          Forgot your password?&nbsp;
           <Link to={ROUTES.FORGOT_PASSWORD}>Click here!</Link>
         </p>
       </Links>

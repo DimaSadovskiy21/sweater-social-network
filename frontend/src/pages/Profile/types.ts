@@ -1,24 +1,9 @@
-import {
-  FetchNextPageOptions,
-  InfiniteQueryObserverResult,
-} from "@tanstack/react-query";
 import { FormikProps } from "formik";
 
-import { IPostResponse } from "types/post";
-import { TAxiosRequestError } from "types/error";
-
-export interface IProfileProps<T> {
-  formik: Pick<FormikProps<T>, "values" | "handleSubmit" | "handleChange">;
-  posts?: IPostResponse[][];
-  checkPosts?: number;
-  dataLength: number;
-  isLoading: boolean;
-  hasNextPage?: boolean;
-  fetchNextPage: (
-    options?: FetchNextPageOptions | undefined
-  ) => Promise<
-    InfiniteQueryObserverResult<IPostResponse[], TAxiosRequestError>
-  >;
+import { IPostsListProps } from "components/PostsList/types";
+export interface IProfileProps<T> extends IPostsListProps {
+  formik: FormikProps<T>;
+  isCreatePostLoading: boolean;
 }
 
 export interface IAddPostValues {

@@ -1,14 +1,14 @@
 import { FC } from "react";
 import { NavLink } from "react-router-dom";
 
-import { IPagesProps } from "types/pages";
+import { ROUTES } from "constant";
 import { FormLayout } from "components/FormLayout";
 import { Input } from "components/Input";
 import { Button } from "components/Button";
-import { ROUTES } from "constant";
+import { IPagesProps } from "types/pages";
 
-import { IRegisterValues } from "./types";
 import { SignIn } from "./styles";
+import { IRegisterValues } from "./types";
 
 const Register: FC<IPagesProps<IRegisterValues>> = ({ formik, isLoading }) => {
   const { errors, touched, handleSubmit, getFieldProps } = formik;
